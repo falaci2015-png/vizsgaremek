@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rail Control - Regisztráció</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main id="menuScreen">
+        <div class="menuBox">
+            <h1>Regisztráció</h1>
+            <p>Nóra – Rail Control</p>
+            <!-- Regisztrációs űrlap -->
+            <input type="text" id="username" placeholder="Felhasználónév">
+            <input type="password" id="password" placeholder="Jelszó">
+            <input type="password" id="passwordAgain" placeholder="Jelszó újra">
+
+            <button id="registerBtn">Regisztráció</button>
+
+            <button onclick="window.location.href='login.html'">
+                Vissza a bejelentkezéshez
+            </button>
+
+            <button class="exitBtn" onclick="window.location.href='../index.html'">
+                ⬅ EXIT
+            </button>
+
+            <p id="registerMessage"></p>
+        </div>
+    </main>
+
+    <script src="js/register.js"></script>
+</body>
+
+</html>

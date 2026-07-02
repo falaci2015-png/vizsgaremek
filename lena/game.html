@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Léna</title>
+
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+    <!-- Léna játékfelület -->
+    <!-- Játék teljes konténere -->
+    <div id="gameContainer">
+        <!-- Kilépés a játékból a Léna főmenübe -->
+        <button id="exitButton" onclick="window.location.href='index.html'">
+            Kilép
+        </button>
+        <!-- Játékvezérlő gombok és HUD -->
+        <div id="gameButtons">
+            <button id="jumpButton">
+                Ugrás
+            </button>
+            <button id="shootButton">
+                Lövés
+            </button>
+            <!-- Játék közbeni információs sáv -->
+            <div id="hud">
+                <span id="scoreDisplay">
+                    Pontszám: 0
+                </span>
+                <span id="lifeDisplay">
+                    Élet: ❤❤
+                </span>
+                <span id="bossHpDisplay">
+                    Boss HP: -
+                </span>
+                <span id="worldDisplay">
+                    Pálya: -
+                </span>
+                <span id="difficultyDisplay">
+                    Nehézség: -
+                </span>
+            </div>
+        </div>
+        <!-- Játéktér -->
+        <div id="gameArea">
+            <!-- Küldetésüzenet megjelenítése -->
+            <div id="missionText"></div>
+            <!-- Vereség esetén megjelenő panel -->
+            <div id="gameOverPanel">
+                <h1>GAME OVER</h1>
+                <p id="finalScore">
+                    Pontszám: 0
+                </p>
+                <button id="restartButton">
+                    Újra
+                </button>
+                <button id="menuButton">
+                    Főmenü
+                </button>
+            </div>
+            <!-- Győzelem esetén megjelenő panel -->
+            <div id="victoryPanel">
+                <h1>GRATULÁLOK!</h1>
+                <p>
+                    Legyőzted a Boss-t!
+                </p>
+                <p id="victoryScore">
+                    Pontszám: 0
+                </p>
+                <button id="victoryRestartButton">
+                    Újra
+                </button>
+
+                <button id="victoryMenuButton">
+                    Főmenü
+                </button>
+            </div>
+            <!-- Játékos karakter -->
+            <img id="player" src="" alt="Léna">
+            <!-- Aktuális ellenfél -->
+            <img id="enemy" src="" alt="Ellenség">
+        </div>
+    </div>
+    <!-- Játéklogikát tartalmazó JavaScript fájl betöltése -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

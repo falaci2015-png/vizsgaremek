@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Road Garage</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/fbu.css">
+</head>
+
+<body class="garagePage">
+    <!-- Beamer Racing főmenü oldala -->
+    <!-- Garázs főmenü teljes kerete -->
+    <main id="garageMenu">
+        <!-- Főmenü gombjai -->
+        <div class="menuPanel">
+
+            <button class="menuBtn" id="startButton">
+                <span class="menuIcon">🏁</span>
+                <span>Játék indítása</span>
+            </button>
+
+            <button class="menuBtn">
+                <span class="menuIcon">🔧</span>
+                <span>Beállítások</span>
+            </button>
+
+            <button class="menuBtn">
+                <span class="menuIcon">🏆</span>
+                <span>Ranglista</span>
+            </button>
+
+            <button class="menuBtn">
+                <span class="menuIcon">📖</span>
+                <span>Leírás</span>
+            </button>
+            <button class="menuBtn" id="logoutBtn">
+                <span class="menuIcon">🚪</span>
+                <span>Kilépés</span>
+            </button>
+            <button class="menuBtn hidden" id="adminButton">
+                <span class="menuIcon">👑</span>
+                <span>Admin</span>
+            </button>
+
+        </div>
+        <!-- Beállítások panel -->
+        <div id="settingsPanel" class="panel hidden">
+
+            <h2>Beállítások</h2>
+            <div class="settingGroup">
+
+                <h3>Játékos neve</h3>
+
+                <input type="text" id="playerNameInput" maxlength="20" placeholder="Bejelentkezett játékos" readonly>
+
+            </div>
+
+            <div class="settingGroup">
+
+                <h3>Autó választás</h3>
+
+                <label>
+                    <input type="radio" name="car" value="A" checked>
+
+                    Autó A
+                </label>
+
+                <label>
+                    <input type="radio" name="car" value="B">
+
+                    Autó B
+                </label>
+
+            </div>
+
+            <div class="settingGroup">
+
+                <h3>Hang</h3>
+
+                <label>
+                    <input type="checkbox" id="soundEnabled" checked>
+
+                    Hang bekapcsolva
+                </label>
+
+            </div>
+            <div class="settingGroup">
+
+                <h3>Nehézség</h3>
+
+                <label>
+                    <input type="radio" name="difficulty" value="easy">
+                    Könnyű
+                </label>
+
+                <label>
+                    <input type="radio" name="difficulty" value="normal" checked>
+                    Normál
+                </label>
+
+                <label>
+                    <input type="radio" name="difficulty" value="hard">
+                    Nehéz
+                </label>
+
+            </div>
+            <div class="settingGroup">
+
+                <h3>Jelszó módosítás</h3>
+
+                <input type="password" id="oldPasswordInput" placeholder="Régi jelszó">
+
+                <input type="password" id="newPasswordInput" placeholder="Új jelszó">
+
+                <input type="password" id="newPasswordAgainInput" placeholder="Új jelszó újra">
+
+                <button class="menuBtn" id="changePasswordBtn">
+                    Jelszó mentése
+                </button>
+
+                <p id="passwordMessageBox"></p>
+
+            </div>
+
+        </div>
+        <!-- Ranglista panel -->
+        <div id="leaderboardPanel" class="panel hidden leaderboardPanel">
+            <h2>Ranglista</h2>
+
+            <p class="leaderboardIntro">
+                Itt jelenik majd meg a legjobb 10 eredmény.
+            </p>
+
+            <div class="leaderboardList">
+
+                <div class="leaderboardHeader">
+                    <span>Hely</span>
+                    <span>Játékos</span>
+                    <span>Jármű</span>
+                    <span>Nehézség</span>
+                    <span>Idő</span>
+                    <span>Pénz</span>
+                </div>
+
+                <div id="leaderboardContent">
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- Játék leírása -->
+        <div id="descriptionPanel" class="panel hidden descriptionPanel">
+            <h2>Beamer Racing</h2>
+
+            <p>
+                Üdvözlünk a Beamer Racing világában!
+                Válassz járművet, száguldj végig a pályán,
+                kerüld el az akadályokat és gyűjts össze minél több pénzt.
+            </p>
+
+            <h3>A játék célja</h3>
+            <ul>
+                <li>Érj célba a lehető leggyorsabban.</li>
+                <li>Kerüld ki az akadályokat.</li>
+                <li>Gyűjts össze minél több pénzt.</li>
+                <li>Ne törd össze az autódat.</li>
+            </ul>
+
+            <h3>Járművek</h3>
+            <p>
+                Választható járművek: <strong>Falcon</strong> és <strong>Viper</strong>.
+                A különbség főként a megjelenésükben van.
+            </p>
+
+            <h3>Nehézségi szintek</h3>
+            <ul>
+                <li><strong>Könnyű:</strong> kevesebb akadály, több pénz, alacsonyabb végsebesség.</li>
+                <li><strong>Normál:</strong> kiegyensúlyozott játékélmény.</li>
+                <li><strong>Nehéz:</strong> több akadály, kevesebb pénz, magasabb végsebesség.</li>
+            </ul>
+
+            <h3>Irányítás</h3>
+            <ul>
+                <li><strong>↑</strong> gyorsítás</li>
+                <li><strong>↓</strong> lassítás</li>
+                <li><strong>←</strong> balra</li>
+                <li><strong>→</strong> jobbra</li>
+            </ul>
+
+            <p>
+                Mobil eszközön a képernyőn megjelenő vezérlőgombokkal lehet irányítani.
+            </p>
+
+            <p class="tip">
+                Tipp: a nagyobb sebesség gyorsabb célba érést jelent,
+                de az akadályok kikerülése nehezebb lesz.
+            </p>
+
+            <p class="developers">
+                A játék a Szoftverfejlesztő és tesztelő
+                szakmai vizsga vizsgaremekének része.
+            </p>
+            <!-- FBU Team logó a leírás panelen -->
+            <div class="fbuAboutLogo">
+
+                <div class="fbuLogoBox">
+
+                    <img src="../img/logo.png" alt="FBU TEAM" class="fbuSmallLogo">
+
+                    <div class="fbuBigLogoBox">
+
+                        <img src="../img/nagy_logo.png" alt="FBU TEAM" class="fbuBigLogo">
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <!-- Adminisztrációs panel -->
+        <div id="adminPanel" class="panel hidden adminPanel">
+            <h2>Admin panel</h2>
+
+            <div class="adminStats">
+                <div>Felhasználók: <span id="adminUserCount">0</span></div>
+                <div>Adminok: <span id="adminAdminCount">0</span></div>
+                <div>Ranglista rekordok: <span id="adminLeaderboardCount">0</span></div>
+                <div>Legjobb idő: <span id="adminBestTime">-</span></div>
+            </div>
+
+            <h3>Felhasználók</h3>
+
+            <div id="adminUsersList" class="adminUsersList">
+            </div>
+            <h3>Ranglista</h3>
+
+            <div id="adminScoresList" class="adminUsersList">
+            </div>
+        </div>
+        <!-- Kilépési zónák és vizuális jelölés -->
+        <div id="exitGlow"></div>
+        <div id="menuExitZone"></div>
+        <div id="projectExitZone"></div>
+
+    </main>
+    <!-- Főmenü JavaScript fájl betöltése -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

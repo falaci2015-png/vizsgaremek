@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redrock Ranch - Beállítások</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="menuPage">
+
+    <main class="menuContainer">
+        <!-- Beállítások panel -->
+        <section class="settingsPanel">
+
+            <h1>BEÁLLÍTÁSOK</h1>
+
+            <label class="settingRow">
+                <span>Játékosnév</span>
+                <input type="text" id="playerName" maxlength="50" readonly>
+            </label>
+
+            <label class="settingRow">
+                <span>Háttérzene</span>
+                <input type="checkbox" id="musicEnabled">
+            </label>
+
+            <label class="settingRow">
+                <span>Hangeffektek</span>
+                <input type="checkbox" id="soundEnabled">
+            </label>
+
+            <label class="settingRow">
+                <span>Játékidő</span>
+                <select id="gameTime">
+                    <option value="30">30 másodperc</option>
+                    <option value="60">60 másodperc</option>
+                    <option value="90">90 másodperc</option>
+                </select>
+            </label>
+            <hr class="settingsDivider">
+            <!-- Jelszó módosítás -->
+            <h2 class="settingsSubTitle">Jelszó módosítás</h2>
+
+            <label class="settingRow">
+                <span>Régi jelszó</span>
+                <input type="password" id="oldPassword">
+            </label>
+
+            <label class="settingRow">
+                <span>Új jelszó</span>
+                <input type="password" id="newPassword">
+            </label>
+
+            <label class="settingRow">
+                <span>Új jelszó újra</span>
+                <input type="password" id="newPasswordAgain">
+            </label>
+
+            <button id="changePasswordBtn" class="menuBtn">JELSZÓ MÓDOSÍTÁSA</button>
+
+            <p id="passwordMessage"></p>
+
+            <button id="saveSettingsBtn" class="menuBtn">MENTÉS</button>
+            <button id="backBtn" class="menuBtn">VISSZA</button>
+
+        </section>
+
+    </main>
+
+    <script src="js/settings.js"></script>
+</body>
+
+</html>

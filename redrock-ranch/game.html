@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redrock Ranch</title>
+
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+
+    <main class="gameScene">
+        <!-- Játék HUD -->
+        <div class="hud">
+            <div class="hudLeft">
+                <div class="hudBox">
+                    <span class="hudLabel">Pontok:</span>
+                    <span class="hudValue" id="scoreValue">0</span>
+                </div>
+
+                <div class="hudBox">
+                    <span class="hudLabel">Combo:</span>
+                    <span class="hudValue" id="comboValue">--</span>
+                </div>
+
+                <div class="hudBox bossHud hidden" id="bossHud">
+                    <span class="hudLabel">Boss HP:</span>
+                    <span class="hudValue" id="bossHpValue">3</span>
+                </div>
+            </div>
+
+            <div class="hudRight">
+                <div class="hudBox">
+                    <span class="hudLabel">Idő:</span>
+                    <span class="hudValue" id="timeValue">01:00</span>
+                </div>
+
+                <div class="ammoHud">
+                    <div class="ammoTitle">Lőszer</div>
+                    <div class="ammoRow">
+                        <span>Tárak:</span>
+                        <strong id="magazineValue">4</strong>
+                    </div>
+                    <div id="bulletBar" class="bulletBar"></div>
+                </div>
+            </div>
+        </div>
+        <!-- Főhős rétege -->
+        <div class="heroBox">
+            <img src="assets/img/hero/body.png" alt="Redrock Ranch főhős teste" class="heroBody" id="heroBody">
+            <img src="assets/img/hero/arm.png" alt="Redrock Ranch főhős karja" class="heroArm" id="heroArm">
+        </div>
+        <div id="horse">
+            <img src="assets/img/horse/horse_a.png" alt="Horse">
+        </div>
+        <!-- Ellenfelek megjelenítési rétege -->
+        <div id="enemyLayer"></div>
+        <div id="muzzleFlash"></div>
+        <div id="crosshair">+</div>
+        <!-- Célpontok megjelenési zónái -->
+
+        <div class="spawnZone zone1"></div>
+        <div class="spawnZone zone2"></div>
+        <div class="spawnZone zone3"></div>
+        <div class="spawnZone zone4"></div>
+        <div class="spawnZone zone5"></div>
+
+        <div class="spawnZone zone6"></div>
+        <div class="spawnZone zone7"></div>
+        <div class="spawnZone zone8"></div>
+        <div class="spawnZone zone9"></div>
+
+        <div class="spawnZone zone10 exitZone" id="gameExitZone"></div>
+        <div id="bossWarning" class="bossWarning hidden">
+            ⚠ BOSS ÉRKEZIK! ⚠
+        </div>
+        <!-- Játék vége panel -->
+        <div class="gameOverPanel hidden" id="gameOverPanel">
+            <h2>Lejárt az idő!</h2>
+            <p>Végső pontszám:</p>
+            <strong id="finalScore">0</strong>
+            <br>
+            <button onclick="location.reload()">Új játék</button>
+        </div>
+        <audio id="bgMusic" loop>
+            <source src="assets/audio/bg_sound.mp3" type="audio/mpeg">
+        </audio>
+
+    </main>
+
+    <script src="js/game.js"></script>
+</body>
+
+</html>

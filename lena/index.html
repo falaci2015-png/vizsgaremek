@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Léna – The Endless Worlds</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/fbu.css">
+</head>
+
+<body class="menu-page">
+    <!-- Léna játék főmenü oldala -->
+    <!-- Főmenü teljes oldalkerete -->
+    <div id="menuWrapper">
+        <!-- Bal oldali navigációs sáv -->
+        <aside id="sidebar">
+
+            <div id="logo">
+                <h1>Léna</h1>
+                <p>The Endless Worlds</p>
+            </div>
+            <!-- Menü gombok -->
+            <nav>
+                <button class="menuBtn active" onclick="showPanel('startPanel', this)">
+                    Start
+                </button>
+                <button class="menuBtn" onclick="showPanel('settingsPanel', this)">
+                    Beállítások
+                </button>
+                <button class="menuBtn" onclick="showPanel('leaderboardPanel', this)">
+                    Ranglista
+                </button>
+                <button class="menuBtn" onclick="showPanel('aboutPanel', this)">
+                    Leírás
+                </button>
+            </nav>
+            <!-- Bejelentkezési információk és visszalépés a közös főmenübe -->
+            <div class="bottomLogo">
+                <div id="loginInfo">
+                    Bejelentkezve: -
+                </div>
+                <button id="logoutButton" onclick="window.location.href='backend/logout.php'">
+                    Kijelentkezés
+                </button>
+                <img src="assets/img/logo/logo.png" alt="Projekt Portál" id="projectPortal"
+                    onclick="window.location.href='../index.html'">
+            </div>
+        </aside>
+        <!-- Fő tartalmi terület -->
+        <main id="contentArea">
+            <!-- START -->
+            <section id="startPanel" class="panel activePanel">
+                <h2>Léna – The Endless Worlds</h2>
+                <!-- Játék előnézeti területe -->
+                <div class="previewArea">
+                    <img id="menuLena" src="" alt="Léna">
+                    <div class="welcomeBox">
+                        <h3 id="welcomeText">
+                            Üdvözöllek kedves Játékos!
+                        </h3>
+                        <p>
+                            Indulj el Léna oldalán,
+                            győzd le az ellenfeleket
+                            és fedezd fel a világokat!
+                        </p>
+                        <!-- Aktuális játékbeállítások megjelenítése -->
+                        <div class="currentSettings">
+                            <p>
+                                Játékos:
+                                <span id="currentPlayerName">
+                                    Játékos1
+                                </span>
+                            </p>
+                            <p>
+                                Pálya:
+                                <span id="currentWorldName">
+                                    Erdő
+                                </span>
+                            </p>
+                        </div>
+                        <button id="startButton" onclick="window.location.href='game.html'">
+                            Játék indítása
+                        </button>
+                    </div>
+                    <img id="menuEnemy" src="" alt="Ellenség">
+                </div>
+            </section>
+            <!-- BEÁLLÍTÁSOK -->
+            <section id="settingsPanel" class="panel">
+                <h2>Beállítások</h2>
+                <label>Játékosnév</label>
+                <input type="text" id="playerNameInput">
+                <label>Pálya</label>
+                <select id="worldSelect">
+                    <option value="erdo">Erdő</option>
+                    <option value="havas">Havas</option>
+                    <option value="mars">Mars</option>
+                </select>
+                <label>Nehézség</label>
+                <select id="difficultySelect">
+                    <option value="easy">
+                        Könnyű
+                    </option>
+                    <option value="normal" selected>
+                        Normál
+                    </option>
+                    <option value="hard">
+                        Nehéz
+                    </option>
+                </select>
+                <label>Hang</label>
+                <select id="soundSelect">
+                    <option value="on">
+                        Be
+                    </option>
+                    <option value="off">
+                        Ki
+                    </option>
+                </select>
+                <button onclick="saveSettings()">
+                    Mentés
+                </button>
+                <hr>
+                <h3>Jelszó módosítása</h3>
+                <label>Régi jelszó</label>
+                <input type="password" id="oldPassword">
+                <label>Új jelszó</label>
+                <input type="password" id="newPassword">
+                <button onclick="changePassword()">
+                    Jelszó módosítása
+                </button>
+            </section>
+            <!-- RANGLISTA -->
+            <section id="leaderboardPanel" class="panel">
+                <!-- Ranglista és admin felület elrendezése -->
+                <div class="leaderboardLayout">
+                    <div class="leaderboardBox">
+                        <h2>Ranglista</h2>
+                        <div class="sectionBlock">
+                            <h3>Legjobb eredmények</h3>
+                            <div id="leaderboardList">
+                                Még nincs mentett eredmény.
+                            </div>
+                        </div>
+                        <div id="leaderboardAdminControls" style="display: none;">
+                            <h3>Admin törlés</h3>
+                            <button onclick="clearLeaderboard()">
+                                Ranglista törlése
+                            </button>
+                        </div>
+                    </div>
+                    <div id="adminBox" class="adminBox" style="display: none;">
+                        <div class="adminStatsBox">
+                            <div id="adminStats">
+                                Statisztika betöltése...
+                            </div>
+                        </div>
+                        <div class="adminUsersBox">
+                            <h3>Felhasználók</h3>
+                            <div class="usersScroll">
+                                <div id="usersList">
+                                    Felhasználók betöltése...
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- LEÍRÁS -->
+            <section id="aboutPanel" class="panel">
+                <h2>Léna – The Endless Worlds</h2>
+                <p>
+                    A Léna – The Endless Worlds egy saját fejlesztésű
+                    2D akciójáték, amely HTML, CSS, JavaScript, PHP
+                    és MySQL felhasználásával készült.
+                </p>
+                <p>
+                    A játékos három különböző világban
+                    (Erdő, Havas és Mars) harcolhat az ellenfelekkel.
+                    Minden pályán több ellenfelet kell legyőzni,
+                    majd a végén egy Boss vár a játékosra.
+                </p>
+                <p>
+                    A játék tartalmaz több nehézségi szintet,
+                    hangrendszert, ranglistát, felhasználói fiókokat,
+                    valamint adminisztrációs funkciókat is.
+                </p>
+                <p>
+                    A cél minden világban ugyanaz:
+                    segíts Lénának legyőzni az ellenfeleket,
+                    megszerezni a lehető legtöbb pontot,
+                    és felkerülni a ranglista élére.
+                </p>
+                <hr>
+                <h3>Vizsgaprojekt</h3>
+                <p>
+                    A játék a Szoftverfejlesztő és tesztelő
+                    szakmai vizsga vizsgaremekének része.
+                </p>
+                <!-- FBU Team logó a leírás panelen -->
+                <div class="fbuAboutLogo">
+                    <div class="fbuLogoBox">
+                        <img src="../img/logo.png" alt="FBU TEAM" class="fbuSmallLogo">
+                        <div class="fbuBigLogoBox">
+                            <img src="../img/nagy_logo.png" alt="FBU TEAM" class="fbuBigLogo">
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <!-- Fő JavaScript fájl betöltése -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>

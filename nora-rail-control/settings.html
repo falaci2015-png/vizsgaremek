@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rail Control - Beállítások</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main id="menuScreen">
+
+        <div class="menuBox">
+            <h1>Beállítások</h1>
+            <p>Rail Control játékmód</p>
+            <!-- Játékbeállítások -->
+            <label class="settingLabel">
+                Nehézség
+            </label>
+
+            <select id="difficultySelect">
+                <option value="easy">Könnyű</option>
+                <option value="normal">Normál</option>
+                <option value="hard">Nehéz</option>
+            </select>
+
+            <div class="soundRow">
+                <input type="checkbox" id="soundToggle">
+                <label for="soundToggle">Hang bekapcsolva</label>
+            </div>
+            <h2>Jelszó módosítás</h2>
+
+            <input type="password" id="oldPassword" placeholder="Régi jelszó">
+            <input type="password" id="newPassword" placeholder="Új jelszó">
+            <input type="password" id="newPasswordAgain" placeholder="Új jelszó újra">
+
+            <button id="changePasswordBtn">Jelszó módosítása</button>
+
+            <p id="passwordMessage"></p>
+
+            <button id="saveSettingsBtn">Mentés</button>
+            <button id="backBtn">Vissza</button>
+        </div>
+
+    </main>
+
+    <script src="js/settings.js"></script>
+</body>
+
+</html>

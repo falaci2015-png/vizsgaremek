@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Retro Road Garage - Játék</title>
+
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body class="gamePage">
+    <!-- Beamer Racing játékoldal -->
+    <!-- Bal oldali HUD adatok -->
+    <div id="hudLeft">
+        <div>Idő: <span id="timeValue">00:00:00</span></div>
+        <div>Pénz: <span id="moneyValue">0</span></div>
+        <button id="backToMenuBtn">Főmenü</button>
+    </div>
+    <!-- Jobb oldali HUD adatok -->
+    <div id="hudRight">
+        <div>Jármű: <span id="carNameValue">Falcon</span></div>
+        <div>Nehézség: <span id="difficultyValue">Normál</span></div>
+        <div>Sebesség: <span id="speedValue">0</span></div>
+    </div>
+    <!-- Pályahaladás jelző -->
+    <div id="progressHud">
+        <div id="progressBar">
+            <div id="progressFill"></div>
+        </div>
+    </div>
+    <!-- Canvas alapú játéktér -->
+    <canvas id="gameCanvas"></canvas>
+    <!-- Rajt jelzés -->
+    <div id="goText">GO!</div>
+    <!-- Játék végi összesítő panel -->
+    <div id="endGamePanel" class="hidden">
+
+        <h1 id="endGameTitle">GYŐZTÉL!</h1>
+
+        <p>Játékos: <span id="endPlayerNameValue">Vendég</span></p>
+
+        <p>Idő: <span id="endTimeValue">00:00:00</span></p>
+
+        <p>Pénz: <span id="endMoneyValue">0</span></p>
+        <p>Jármű: <span id="endCarValue">Falcon</span></p>
+
+        <p>Nehézség: <span id="endDifficultyValue">Normál</span></p>
+
+        <div class="panelButtons">
+
+            <button id="restartBtn">
+                Újra
+            </button>
+
+            <button id="menuBtn">
+                Főmenü
+            </button>
+
+        </div>
+
+    </div>
+    <!-- Mobil irányítógombok -->
+    <div id="mobileControls">
+        <button id="btnUp">▲</button>
+        <div>
+            <button id="btnLeft">◀</button>
+            <button id="btnDown">▼</button>
+            <button id="btnRight">▶</button>
+        </div>
+    </div>
+    <!-- Játéklogika JavaScript fájl betöltése -->
+    <script src="js/game.js"></script>
+</body>
+
+</html>

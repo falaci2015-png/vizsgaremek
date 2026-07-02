@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rail Control - Ranglista</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main id="menuScreen">
+        <div class="leaderboardBox">
+            <h1>Ranglista</h1>
+            <p>Nóra – Rail Control</p>
+            <!-- Ranglisták nehézségi szintenként -->
+            <div id="leaderboardGrid">
+                <div class="leaderboardColumn">
+                    <div class="leaderboardHeader">
+                        <h2>Könnyű Top 10</h2>
+                    </div>
+                    <div class="leaderboardScroll">
+                        <div id="easyList">Betöltés...</div>
+                    </div>
+                </div>
+                <div class="leaderboardColumn">
+                    <div class="leaderboardHeader">
+                        <h2>Normál Top 10</h2>
+                    </div>
+
+                    <div class="leaderboardScroll">
+                        <div id="normalList">Betöltés...</div>
+                    </div>
+                </div>
+
+                <div class="leaderboardColumn">
+                    <div class="leaderboardHeader">
+                        <h2>Nehéz Top 10</h2>
+                    </div>
+
+                    <div class="leaderboardScroll">
+                        <div id="hardList">Betöltés...</div>
+                    </div>
+                </div>
+            </div>
+
+            <button class="leaderboardBackBtn" onclick="window.location.href='index.html'">
+                Vissza
+            </button>
+        </div>
+    </main>
+
+    <script src="js/leaderboard.js"></script>
+</body>
+
+</html>

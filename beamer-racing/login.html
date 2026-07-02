@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beamer Racing - Bejelentkezés</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body class="garagePage">
+    <!-- Bejelentkezési oldal -->
+    <!-- Bejelentkezési oldal fő kerete -->
+    <main id="garageMenu">
+        <!-- Bejelentkezési panel -->
+        <div class="panel authPanel">
+
+            <h2>Bejelentkezés</h2>
+
+            <div class="settingGroup">
+
+                <h3>Felhasználónév</h3>
+
+                <input type="text" id="usernameInput" maxlength="50">
+
+            </div>
+
+            <div class="settingGroup">
+
+                <h3>Jelszó</h3>
+
+                <input type="password" id="passwordInput">
+
+            </div>
+
+            <button class="menuBtn" id="loginBtn">
+
+                Bejelentkezés
+
+            </button>
+
+            <button class="menuBtn" id="registerBtn">
+
+                Regisztráció
+
+            </button>
+
+            <p id="messageBox"></p>
+
+
+        </div>
+        <div id="exitGlow"></div>
+        <div id="projectExitZone"></div>
+    </main>
+    <!-- Bejelentkezés kezelése -->
+    <script>
+
+        const usernameInput =
+            document.getElementById("usernameInput");
+
+        const passwordInput =
+            document.getElementById("passwordInput");
+
+        const loginBtn =
+            document.getElementById("loginBtn");
+
+        const registerBtn =
+            document.getElementById("registerBtn");
+
+        const messageBox =
+            document.getElementById("messageBox");
+
+        loginBtn.addEventListener("click", () => {
+
+            fetch("backend/login.php", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify({
+
+                    username:
+                        usernameInput.value.trim(),
+
+                    password:
+                        passwordInput.value
+
+                })
+
+            })
+
+                .then(response => response.json())
+
+                .then(data => {
+
+                    messageBox.textContent =
+                        data.message || "";
+
+                    if (data.success) {
+
+                        setTimeout(() => {
+
+                            window.location.href =
+                                "index.html";
+
+                        }, 500);
+                    }
+
+                });
+
+        });
+
+        registerBtn.addEventListener("click", () => {
+
+            window.location.href =
+                "register.html";
+
+        });
+        const exitGlow =
+            document.getElementById("exitGlow");
+
+        const projectExitZone =
+            document.getElementById("projectExitZone");
+
+        exitGlow.style.display = "block";
+        projectExitZone.style.display = "block";
+
+        projectExitZone.addEventListener("click", () => {
+            window.location.href = "../index.html";
+        });
+
+    </script>
+
+</body>
+
+</html>

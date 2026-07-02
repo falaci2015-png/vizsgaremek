@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rail Control</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- Főmenü -->
+    <main id="menuScreen">
+
+        <div class="menuBox">
+            <h1>Rail Control</h1>
+            <p>Vasúti forgalomirányító játék</p>
+            <p id="userStatus">Bejelentkezés ellenőrzése...</p>
+            <button id="logoutBtn" style="display:none;">
+                Kijelentkezés
+            </button>
+
+            <button id="startGameBtn">
+                Játék indítása
+            </button>
+            <button onclick="window.location.href='settings.html'">
+                Beállítások
+            </button>
+            <button onclick="window.location.href='leaderboard.html'">
+                Ranglista
+            </button>
+            <button id="adminBtn" style="display:none;" onclick="window.location.href='admin.html'">
+                Admin
+            </button>
+            <button onclick="window.location.href='description.html'">
+                Leírás
+            </button>
+            <button class="exitBtn" onclick="window.location.href='../index.html'">
+                ⬅ Kilépés
+            </button>
+        </div>
+
+    </main>
+    <!-- Menü működését vezérlő JavaScript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,402 @@
+/* ===== Alap stílusok ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body.menuPage {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  font-family: Georgia, serif;
+  background-image: url("../assets/img/background/bg_game.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #ffcc55;
+}
+
+.menuContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.gameTitle {
+  position: absolute;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 4.5rem;
+  letter-spacing: 5px;
+  color: #f2c16b;
+
+  text-shadow:
+    0 0 6px black,
+    0 0 18px #5b2608;
+}
+
+.gameSubtitle {
+  position: absolute;
+  top: 165px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  font-size: 2rem;
+  letter-spacing: 4px;
+  color: #e8b45e;
+
+  text-shadow:
+    0 0 6px black,
+    0 0 14px #5b2608;
+}
+/* ===== Főmenü ===== */
+.menuButtons {
+  position: absolute;
+  left: 50%;
+  top: 300px;
+  transform: translateX(-50%);
+
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.menuBtn {
+  width: 330px;
+  padding: 15px 24px;
+
+  font-family: Georgia, serif;
+  font-size: 1.35rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+  color: #ffcc55;
+  background: rgba(35, 17, 7, 0.88);
+  border: 3px solid rgba(175, 105, 35, 0.95);
+  border-radius: 10px;
+
+  box-shadow:
+    0 0 14px rgba(0, 0, 0, 0.8),
+    inset 0 0 12px rgba(255, 190, 80, 0.12);
+
+  text-shadow: 0 0 6px black;
+  cursor: pointer;
+}
+
+.menuBtn:hover {
+  background: rgba(75, 34, 9, 0.95);
+  transform: scale(1.04);
+}
+
+#projectExitZone {
+  position: absolute;
+  right: 30px;
+  top: 400px;
+
+  width: 170px;
+  height: 150px;
+
+  cursor: pointer;
+  border-radius: 18px;
+
+  animation: menuExitGlow 1.2s infinite alternate;
+}
+
+@keyframes menuExitGlow {
+  from {
+    box-shadow:
+      0 0 4px rgba(255, 210, 90, 0.15),
+      inset 0 0 4px rgba(255, 210, 90, 0.1);
+  }
+
+  to {
+    box-shadow:
+      0 0 18px rgba(255, 210, 90, 0.75),
+      0 0 38px rgba(255, 120, 20, 0.45),
+      inset 0 0 18px rgba(255, 210, 90, 0.35);
+  }
+}
+/* ===== Beállítások ===== */
+.settingsPanel {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 430px;
+  padding: 30px;
+
+  background: rgba(35, 17, 7, 0.92);
+  border: 3px solid rgba(175, 105, 35, 0.95);
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 24px rgba(0, 0, 0, 0.85),
+    inset 0 0 18px rgba(255, 190, 80, 0.12);
+
+  text-align: center;
+}
+
+.settingsPanel h1 {
+  margin-bottom: 28px;
+  color: #ffcc55;
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px black;
+}
+
+.settingRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 18px;
+  padding: 12px 14px;
+
+  background: rgba(15, 8, 5, 0.65);
+  border: 2px solid rgba(120, 70, 30, 0.75);
+  border-radius: 8px;
+
+  color: #f5d18a;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.settingRow input,
+.settingRow select {
+  cursor: pointer;
+}
+
+.settingRow input[type="text"],
+.settingRow input[type="password"],
+.settingRow select {
+  width: 170px;
+  padding: 6px 10px;
+
+  font-family: Georgia, serif;
+  font-size: 1rem;
+
+  color: #ffcc55;
+  background: rgba(20, 10, 5, 0.9);
+  border: 2px solid rgba(175, 105, 35, 0.9);
+  border-radius: 6px;
+}
+
+.settingsPanel .menuBtn {
+  margin-top: 12px;
+}
+/* ===== Leírás / Ranglista / Admin oldalak ===== */
+#menuScreen {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: Georgia, serif;
+  background-image: url("../assets/img/background/bg_game.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: #f5d18a;
+}
+
+.menuBox {
+  width: 760px;
+  max-height: 82vh;
+  overflow-y: auto;
+
+  padding: 34px 42px;
+
+  background: rgba(35, 17, 7, 0.92);
+  border: 3px solid rgba(175, 105, 35, 0.95);
+  border-radius: 14px;
+
+  box-shadow:
+    0 0 24px rgba(0, 0, 0, 0.85),
+    inset 0 0 18px rgba(255, 190, 80, 0.12);
+
+  text-align: center;
+}
+
+.menuBox h1,
+.menuBox h3 {
+  color: #ffcc55;
+  letter-spacing: 3px;
+  margin-bottom: 20px;
+  text-shadow: 0 0 8px black;
+}
+
+.menuBox p {
+  margin-bottom: 16px;
+  font-size: 1.08rem;
+  line-height: 1.55;
+  text-align: left;
+}
+
+.menuBox hr {
+  margin: 26px 0;
+  border: none;
+  border-top: 2px solid rgba(175, 105, 35, 0.7);
+}
+
+.menuBox button {
+  margin-top: 22px;
+  width: 260px;
+  padding: 13px 22px;
+
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+
+  color: #ffcc55;
+  background: rgba(35, 17, 7, 0.9);
+  border: 3px solid rgba(175, 105, 35, 0.95);
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.menuBox button:hover {
+  background: rgba(75, 34, 9, 0.95);
+}
+
+.menuBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menuBox::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menuBox::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.menuBox::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+/* ===== Ranglista ===== */
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: #f5d18a;
+}
+
+.leaderboardTable th,
+.leaderboardTable td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(175, 105, 35, 0.55);
+  text-align: center;
+}
+
+.leaderboardTable th {
+  color: #ffcc55;
+  font-size: 1.05rem;
+  letter-spacing: 2px;
+}
+
+.leaderboardTable td {
+  font-size: 1rem;
+}
+.hidden {
+  display: none !important;
+}
+/* ===== Admin felület ===== */
+.adminActionBtn {
+  padding: 7px 14px;
+  font-family: Georgia, serif;
+  font-weight: bold;
+  color: #ffcc55;
+  background: rgba(35, 17, 7, 0.9);
+  border: 2px solid rgba(175, 105, 35, 0.95);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.adminActionBtn:hover {
+  background: rgba(75, 34, 9, 0.95);
+}
+
+.menuBox .adminActionBtn {
+  width: auto;
+  min-width: 130px;
+  margin: 0;
+  padding: 7px 14px;
+
+  font-family: Georgia, serif;
+  font-size: 0.95rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  color: #ffcc55;
+  background: rgba(35, 17, 7, 0.9);
+  border: 2px solid rgba(175, 105, 35, 0.95);
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.menuBox .adminActionBtn:hover {
+  background: rgba(75, 34, 9, 0.95);
+  transform: none;
+}
+.adminSectionTitle {
+  margin-top: 34px;
+}
+/* ===== Admin statisztikák ===== */
+.statsPanel {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.statCard {
+  min-width: 150px;
+  padding: 14px;
+
+  background: rgba(35, 17, 7, 0.9);
+  border: 2px solid rgba(175, 105, 35, 0.95);
+  border-radius: 10px;
+
+  text-align: center;
+}
+
+.statValue {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #ffcc55;
+}
+
+.statLabel {
+  margin-top: 6px;
+  color: #f5d18a;
+}
+/* ===== Jelszó módosítás ===== */
+.settingsDivider {
+  margin: 24px 0;
+  border: none;
+  border-top: 2px solid rgba(175, 105, 35, 0.7);
+}
+
+.settingsSubTitle {
+  margin-bottom: 18px;
+  color: #ffcc55;
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px black;
+}
+
+#passwordMessage {
+  margin-top: 14px;
+  color: #f5d18a;
+  font-weight: bold;
+}

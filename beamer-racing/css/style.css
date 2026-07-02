@@ -1,0 +1,649 @@
+/* Alapértelmezett stílusbeállítások */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+/* Oldal alapstílusa */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+  color: white;
+}
+/* Garázs háttér és főoldal */
+.garagePage {
+  background-image: url("../assets/img/garage/background.png");
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: #080808;
+  overflow: hidden;
+}
+
+#garageMenu {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 90px;
+}
+/* Menüpanel */
+.menuPanel {
+  width: 360px;
+  padding: 0;
+
+  background: transparent;
+  border: none;
+  border-radius: 0;
+
+  box-shadow: none;
+}
+/* Menügombok */
+.menuBtn {
+  width: 100%;
+
+  margin-bottom: 10px;
+  padding: 9px 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 9px;
+
+  background: rgba(79, 98, 104, 0.534);
+  color: white;
+
+  font-size: 20px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.menuBtn:hover {
+  background: rgba(105, 73, 46, 0.95);
+  transform: scale(1.03);
+}
+
+.menuIcon {
+  width: 36px;
+  text-align: center;
+  font-size: 26px;
+}
+/* Kilépési kattintható zónák */
+#menuExitZone {
+  position: absolute;
+
+  right: clamp(70px, 10.5vw, 200px);
+  top: clamp(150px, 24vh, 260px);
+
+  width: clamp(70px, 8.5vw, 160px);
+  height: clamp(340px, 60vh, 650px);
+
+  border: none;
+  cursor: pointer;
+
+  z-index: 20;
+  /*background: rgba(255,0,0,0.3);*/
+}
+
+#projectExitZone {
+  position: absolute;
+
+  right: clamp(70px, 10.5vw, 200px);
+  top: clamp(430px, 56vh, 540px);
+
+  width: clamp(70px, 8.5vw, 160px);
+  height: clamp(140px, 22vh, 220px);
+
+  border: none;
+  cursor: pointer;
+
+  z-index: 20;
+
+  /* background: rgba(0,255,0,0.3); */
+}
+/* Közös panel megjelenés */
+.panel {
+  position: absolute;
+
+  width: 700px;
+  min-height: 400px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 12px;
+
+  padding: 25px;
+}
+
+.hidden {
+  display: none;
+}
+
+#exitGlow {
+  position: absolute;
+
+  right: clamp(75px, 10.8vw, 200px);
+  top: clamp(70px, 10.2vh, 110px);
+
+  width: clamp(65px, 7.5vw, 140px);
+  height: clamp(65px, 12vh, 130px);
+
+  border-radius: 12px;
+
+  background: rgba(255, 0, 0, 0.35);
+
+  filter: blur(18px);
+
+  display: none;
+
+  pointer-events: none;
+
+  animation: exitGlowPulse 1.6s infinite;
+}
+
+@keyframes exitGlowPulse {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.95);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+
+  100% {
+    opacity: 0.35;
+    transform: scale(0.95);
+  }
+}
+/* Beállítási csoportok */
+.settingGroup {
+  margin-top: 25px;
+
+  padding: 15px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border-radius: 10px;
+}
+
+.settingGroup h3 {
+  margin-bottom: 15px;
+}
+
+.settingGroup label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  cursor: pointer;
+
+  font-size: 18px;
+}
+
+@media (max-width: 900px) {
+  #garageMenu {
+    padding-top: 30px;
+    align-items: center;
+  }
+
+  .menuPanel {
+    width: min(84vw, 340px);
+  }
+
+  .menuBtn {
+    font-size: 17px;
+    padding: 8px 12px;
+  }
+
+  .panel {
+    width: min(88vw, 620px);
+    min-height: 320px;
+    max-height: 78vh;
+    overflow-y: auto;
+  }
+}
+/* Leírás panel */
+.descriptionPanel {
+  max-height: 72vh;
+  overflow-y: auto;
+  line-height: 1.45;
+}
+
+.descriptionPanel h2 {
+  margin-bottom: 14px;
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.descriptionPanel h3 {
+  margin-top: 16px;
+  margin-bottom: 8px;
+  font-size: clamp(18px, 2vw, 23px);
+}
+
+.descriptionPanel p,
+.descriptionPanel li {
+  font-size: clamp(15px, 1.6vw, 18px);
+}
+
+.descriptionPanel ul {
+  margin-left: 22px;
+  margin-bottom: 8px;
+}
+
+.descriptionPanel .tip {
+  margin-top: 14px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.descriptionPanel .developers {
+  margin-top: 16px;
+  text-align: center;
+}
+
+.descriptionPanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.descriptionPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.descriptionPanel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.descriptionPanel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+/* Ranglista panel */
+.leaderboardPanel {
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.leaderboardPanel h2 {
+  margin-bottom: 14px;
+  font-size: clamp(24px, 3vw, 34px);
+}
+
+.leaderboardIntro {
+  margin-bottom: 16px;
+  font-size: clamp(15px, 1.6vw, 18px);
+  opacity: 0.9;
+}
+
+.leaderboardList {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.leaderboardItem {
+  display: grid;
+  grid-template-columns: 42px 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+
+  padding: 10px 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+
+  font-size: clamp(13px, 1.3vw, 16px);
+}
+
+.leaderboardItem .rank {
+  font-weight: bold;
+  opacity: 0.9;
+}
+
+.leaderboardItem .player {
+  font-weight: bold;
+}
+
+.leaderboardItem .money {
+  text-align: right;
+}
+
+.leaderboardPanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leaderboardPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.leaderboardPanel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.leaderboardPanel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+@media (max-width: 700px) {
+  .leaderboardItem {
+    grid-template-columns: 36px 1fr;
+    gap: 4px 10px;
+  }
+
+  .leaderboardItem .player,
+  .leaderboardItem .car,
+  .leaderboardItem .difficulty,
+  .leaderboardItem .time,
+  .leaderboardItem .money {
+    text-align: left;
+  }
+
+  .leaderboardItem .car::before {
+    content: "Jármű: ";
+    opacity: 0.75;
+  }
+
+  .leaderboardItem .difficulty::before {
+    content: "Nehézség: ";
+    opacity: 0.75;
+  }
+
+  .leaderboardItem .time::before {
+    content: "Idő: ";
+    opacity: 0.75;
+  }
+
+  .leaderboardItem .money::before {
+    content: "Pénz: ";
+    opacity: 0.75;
+  }
+}
+
+.leaderboardItem.gold {
+  background: rgba(255, 215, 0, 0.18);
+
+  border: 1px solid rgba(255, 215, 0, 0.45);
+  box-shadow: 0 0 12px rgba(255, 215, 0, 0.25);
+}
+
+.leaderboardItem.silver {
+  background: rgba(192, 192, 192, 0.15);
+
+  border: 1px solid rgba(192, 192, 192, 0.4);
+  box-shadow: 0 0 10px rgba(192, 192, 192, 0.2);
+}
+
+.leaderboardItem.bronze {
+  background: rgba(205, 127, 50, 0.15);
+
+  border: 1px solid rgba(205, 127, 50, 0.4);
+  box-shadow: 0 0 10px rgba(205, 127, 50, 0.2);
+}
+
+.leaderboardHeader {
+  display: grid;
+  grid-template-columns: 42px 1.4fr 1fr 1fr 1fr 1fr;
+  gap: 8px;
+  align-items: center;
+
+  padding: 8px 12px;
+
+  font-size: clamp(12px, 1.2vw, 14px);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+
+  color: rgba(255, 255, 255, 0.75);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+@media (max-width: 700px) {
+  .leaderboardHeader {
+    display: none;
+  }
+}
+
+#playerNameInput {
+  width: 100%;
+  padding: 10px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+
+  font-size: 17px;
+  font-weight: bold;
+}
+
+#playerNameInput::placeholder {
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* LOGIN / REGISTER SZÉPÍTÉS */
+/* Bejelentkezési és regisztrációs panel */
+.authPanel {
+  width: 420px;
+  min-height: auto;
+
+  background: rgba(0, 0, 0, 0.68);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 0 28px rgba(0, 0, 0, 0.65);
+
+  text-align: center;
+}
+
+.authPanel h2 {
+  margin-bottom: 22px;
+  font-size: 32px;
+  letter-spacing: 0.5px;
+}
+
+.authPanel .settingGroup {
+  margin-top: 14px;
+  padding: 0;
+  background: transparent;
+}
+
+.authPanel .settingGroup h3 {
+  margin-bottom: 8px;
+  text-align: left;
+  font-size: 17px;
+}
+
+.authPanel input {
+  width: 100%;
+  padding: 11px 12px;
+
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.32);
+
+  background: rgba(0, 0, 0, 0.55);
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.authPanel input:focus {
+  outline: none;
+  border-color: rgba(255, 215, 120, 0.75);
+  box-shadow: 0 0 10px rgba(255, 180, 80, 0.35);
+}
+
+.authPanel .menuBtn {
+  justify-content: center;
+  margin-top: 12px;
+}
+
+#messageBox {
+  margin-top: 14px;
+  min-height: 22px;
+  font-weight: bold;
+  color: #ffd28a;
+}
+
+/* ADMIN PANEL */
+/* Admin felület */
+.adminPanel {
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+.adminStats {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.adminStats div {
+  flex: 1;
+  padding: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+
+  font-weight: bold;
+  text-align: center;
+}
+
+.adminUsersList {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.adminUserItem {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 10px;
+
+  padding: 10px 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 10px;
+}
+
+.adminUserItem span:first-child {
+  font-weight: bold;
+}
+
+.dangerBtn {
+  background: rgba(150, 30, 30, 0.85);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 7px;
+  padding: 7px 10px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.dangerBtn:hover {
+  background: rgba(200, 40, 40, 0.95);
+}
+
+.adminPanel::-webkit-scrollbar,
+.adminUsersList::-webkit-scrollbar {
+  width: 6px;
+}
+
+.adminPanel::-webkit-scrollbar-track,
+.adminUsersList::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.adminPanel::-webkit-scrollbar-thumb,
+.adminUsersList::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.adminPanel::-webkit-scrollbar-thumb:hover,
+.adminUsersList::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+/* Jelszó módosító mezők */
+#oldPasswordInput,
+#newPasswordInput,
+#newPasswordAgainInput {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 8px;
+
+  background: rgba(0, 0, 0, 0.45);
+  color: white;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+#passwordMessageBox {
+  margin-top: 10px;
+  min-height: 22px;
+  font-weight: bold;
+  color: #ffd28a;
+}
+/* Beállítások panel görgetése */
+#settingsPanel {
+  max-height: 72vh;
+  overflow-y: auto;
+}
+
+#settingsPanel::-webkit-scrollbar {
+  width: 6px;
+}
+
+#settingsPanel::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#settingsPanel::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+#settingsPanel::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+#passwordMessageBox {
+  display: block;
+  margin-top: 12px;
+  min-height: 24px;
+  font-weight: bold;
+  color: #ffd28a;
+  text-align: center;
+}
+
+.exitBtn {
+  margin-top: 18px;
+  padding: 8px 22px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ddd;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 2px;
+}
+
+.exitBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}

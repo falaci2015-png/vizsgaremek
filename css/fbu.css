@@ -1,0 +1,120 @@
+/* FBU Team logó pozíciója a főmenüben */
+.fbuLogoBox {
+  position: fixed;
+  top: 160px !important;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  width: 62px;
+  height: 69px;
+  cursor: pointer;
+}
+
+/* Kis logó animációja */
+.fbuSmallLogo {
+  width: 62px;
+  height: 69px;
+  object-fit: contain;
+  animation: fbuPulse 2s infinite ease-in-out;
+  filter: drop-shadow(0 0 8px rgba(255, 215, 80, 0.8));
+}
+
+/* Hover állapot a kis logón */
+.fbuLogoBox:hover .fbuSmallLogo {
+  animation-play-state: paused;
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 18px rgba(255, 220, 90, 1));
+}
+
+/* Nagy logó doboza hover megjelenítéshez */
+.fbuBigLogoBox {
+  position: absolute;
+  top: 82px;
+  left: 50%;
+  transform: translateX(-50%) scale(0.8);
+  width: 300px;
+  height: 300px;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+/* Nagy FBU Team logó */
+.fbuBigLogo {
+  width: 300px;
+  height: 300px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 22px rgba(255, 215, 80, 0.9));
+}
+
+/* Nagy logó megjelenítése hover esetén */
+.fbuLogoBox:hover .fbuBigLogoBox {
+  opacity: 1;
+  transform: translateX(-50%) scale(1);
+}
+
+/* Kis logó pulzáló animációja */
+@keyframes fbuPulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.08);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Mobilnézethez igazított logó */
+@media (max-width: 900px) {
+  .fbuLogoBox {
+    position: relative;
+    top: auto;
+    left: auto;
+    transform: none;
+    margin: 0 auto 20px auto;
+  }
+
+  .fbuBigLogoBox {
+    top: 120px;
+  }
+}
+
+/* Leíró oldalakhoz használt FBU logó elrendezés */
+.fbuAboutLogo {
+  margin-top: 25px;
+  display: flex;
+  justify-content: center;
+}
+
+.fbuAboutLogo .fbuLogoBox {
+  position: relative !important;
+  top: auto !important;
+  left: auto !important;
+  transform: none !important;
+}
+
+/* Rail Control oldalon használt kisebb FBU logó */
+.railFbuLogo {
+  margin-top: 14px;
+  margin-bottom: 90px;
+}
+
+.railFbuLogo .fbuLogoBox {
+  width: 54px;
+  height: 60px;
+}
+
+.railFbuLogo .fbuSmallLogo {
+  width: 54px;
+  height: 60px;
+}
+
+.railFbuLogo .fbuBigLogoBox {
+  top: -310px;
+}

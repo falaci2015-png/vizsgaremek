@@ -1,0 +1,454 @@
+/* ===== Alap stílusok ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)),
+    url("../assets/img/backgrounds/rail_bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
+  font-family: Arial, Helvetica, sans-serif;
+  color: white;
+}
+
+#menuScreen {
+  position: relative;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ===== Főmenü ===== */
+.menuBox {
+  position: relative;
+  z-index: 2;
+
+  width: 420px;
+
+  padding: 30px;
+
+  background: rgba(10, 14, 15, 0.82);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+
+  text-align: center;
+  backdrop-filter: blur(6px);
+
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.55);
+
+  border: 1px solid rgba(255, 209, 102, 0.25);
+}
+
+.menuBox h1 {
+  font-size: 48px;
+
+  margin-bottom: 10px;
+}
+
+.menuBox p {
+  margin-bottom: 25px;
+
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.menuBox button {
+  width: 100%;
+
+  margin-bottom: 10px;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #3a4855;
+
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.menuBox button:hover {
+  background: #516273;
+}
+/* ===== Beállítások ===== */
+.settingLabel {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: 8px;
+
+  font-weight: bold;
+}
+
+#difficultySelect {
+  width: 100%;
+
+  padding: 10px;
+
+  margin-bottom: 18px;
+
+  border-radius: 8px;
+  border: none;
+
+  background: #2f3b42;
+  color: white;
+}
+
+.settingCheck {
+  display: block;
+
+  margin-bottom: 20px;
+
+  text-align: left;
+}
+
+.exitBtn {
+  background: rgba(120, 40, 40, 0.9) !important;
+}
+
+.exitBtn:hover {
+  background: rgba(170, 55, 55, 0.95) !important;
+}
+
+.menuBox input {
+  width: 100%;
+
+  margin-bottom: 12px;
+
+  padding: 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #2f3b42;
+
+  color: white;
+
+  font-size: 16px;
+}
+
+.menuBox input::placeholder {
+  color: rgba(255, 255, 255, 0.6);
+}
+
+#loginMessage,
+#registerMessage {
+  margin-top: 12px;
+
+  min-height: 20px;
+
+  color: #ffd166;
+
+  font-weight: bold;
+}
+
+/* ===== RANGLISTA ===== */
+
+.leaderboardBox {
+  width: 95%;
+  max-width: 1600px;
+
+  margin: 0 auto;
+
+  text-align: center;
+}
+
+#leaderboardGrid {
+  display: flex;
+  gap: 20px;
+
+  margin: 30px 0;
+
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.leaderboardColumn {
+  flex: 1;
+
+  min-height: 500px;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  border: 2px solid rgba(255, 209, 102, 0.35);
+  border-radius: 12px;
+
+  backdrop-filter: blur(4px);
+}
+
+.leaderboardColumn h2 {
+  color: #ffd166;
+
+  margin-bottom: 15px;
+}
+
+.leaderboardColumn ol {
+  text-align: left;
+
+  padding-left: 25px;
+}
+
+.leaderboardColumn li {
+  margin-bottom: 12px;
+
+  padding-bottom: 8px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* Mobil */
+
+@media (max-width: 1100px) {
+  #leaderboardGrid {
+    flex-direction: column;
+  }
+
+  .leaderboardColumn {
+    width: 100%;
+  }
+}
+
+.leaderboardBackBtn {
+  width: 220px;
+  margin: 0 auto;
+  padding: 12px 20px;
+
+  display: block;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #3a4855;
+  color: white;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.leaderboardBackBtn:hover {
+  background: #516273;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+/* ===== ADMIN PANEL ===== */
+
+#adminGrid {
+  display: flex;
+  gap: 20px;
+  margin: 30px 0;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.adminItem {
+  margin-bottom: 12px;
+  padding: 10px;
+
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: 8px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Lénás görgetősáv v2 */
+#adminGrid .leaderboardColumn::-webkit-scrollbar {
+  width: 6px;
+}
+
+#adminGrid .leaderboardColumn::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+#adminGrid .leaderboardColumn::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+#adminGrid .leaderboardColumn::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.adminItem button {
+  margin-top: 8px;
+  padding: 7px 12px;
+
+  border: none;
+  border-radius: 8px;
+
+  background: #3a4855;
+  color: white;
+
+  font-size: 13px;
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.adminItem button:hover {
+  background: #516273;
+}
+/* ===== Hangbeállítás ===== */
+.soundRow {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin: 15px 0;
+}
+
+.soundRow input {
+  width: auto !important;
+  margin: 0;
+  padding: 0;
+}
+
+.soundRow label {
+  margin: 0;
+  cursor: pointer;
+}
+
+.leaderboardColumn ol {
+  padding-left: 0;
+}
+
+#leaderboardGrid .leaderboardColumn {
+  height: 520px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.leaderboardHeader {
+  flex: 0 0 auto;
+}
+
+.leaderboardHeader h2 {
+  margin-bottom: 15px;
+  color: #ffd166;
+}
+
+.leaderboardScroll {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+.leaderboardScroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.leaderboardScroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.leaderboardScroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+}
+
+.leaderboardScroll::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.35);
+}
+
+#adminGrid .leaderboardColumn {
+  height: 520px;
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+}
+/* ===== Admin statisztikai kártyák ===== */
+.statsCard {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  margin-bottom: 14px;
+  padding: 16px;
+
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 209, 102, 0.18);
+  border-radius: 12px;
+
+  text-align: left;
+}
+
+.statsIcon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(255, 209, 102, 0.12);
+  border: 1px solid rgba(255, 209, 102, 0.22);
+  border-radius: 50%;
+
+  font-size: 24px;
+}
+
+.statsLabel {
+  color: rgba(255, 255, 255, 0.75);
+  font-size: 14px;
+}
+
+.statsNumber {
+  margin-top: 3px;
+
+  color: #ffd166;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.adminCounter {
+  margin-bottom: 12px;
+  padding: 8px 10px;
+
+  background: rgba(255, 209, 102, 0.1);
+  border: 1px solid rgba(255, 209, 102, 0.18);
+  border-radius: 8px;
+
+  color: #ffd166;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+}

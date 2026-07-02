@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Redrock Ranch - Ranglista</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main id="menuScreen">
+
+        <div class="menuBox">
+            <h1>Admin Panel</h1>
+            <!-- Admin statisztikai kártyák -->
+            <div id="statsPanel" class="statsPanel">
+
+                <div class="statCard">
+                    <div class="statValue" id="userCount">0</div>
+                    <div class="statLabel">Felhasználó</div>
+                </div>
+
+                <div class="statCard">
+                    <div class="statValue" id="adminCount">0</div>
+                    <div class="statLabel">Admin</div>
+                </div>
+
+                <div class="statCard">
+                    <div class="statValue" id="scoreCount">0</div>
+                    <div class="statLabel">Ranglista</div>
+                </div>
+
+            </div>
+            <!-- Felhasználók kezelése -->
+            <table class="leaderboardTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Felhasználó</th>
+                        <th>Jog</th>
+                        <th>Művelet</th>
+                    </tr>
+                </thead>
+
+                <tbody id="usersBody">
+                    <tr>
+                        <td colspan="4">Betöltés...</td>
+                    </tr>
+                </tbody>
+            </table>
+            <h1 class="adminSectionTitle">Ranglista rekordok</h1>
+            <!-- Ranglista rekordok kezelése -->
+            <table class="leaderboardTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Név</th>
+                        <th>Pont</th>
+                        <th>Idő</th>
+                        <th>Dátum</th>
+                        <th>Művelet</th>
+                    </tr>
+                </thead>
+
+                <tbody id="scoresBody">
+                    <tr>
+                        <td colspan="6">Betöltés...</td>
+                    </tr>
+                </tbody>
+            </table>
+            <button onclick="window.location.href='index.html'">
+                Vissza
+            </button>
+        </div>
+
+    </main>
+    <script src="js/admin_guard.js"></script>
+    <script src="js/admin.js"></script>
+
+</body>
+
+</html>

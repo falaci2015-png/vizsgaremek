@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Rail Control</title>
+
+    <link rel="stylesheet" href="css/game.css">
+</head>
+
+<body>
+    <!-- Játék HUD -->
+    <div id="noraHud">
+
+        <div id="noraCharacter">
+
+            <img id="noraPortrait" src="assets/img/nora/nora_normal.png" alt="Nóra">
+
+        </div>
+
+        <div id="noraBubble">
+            <div id="noraName">Nóra</div>
+
+            <div id="noraMessage">
+                Feladat...
+            </div>
+            <div id="timerMessage">
+                Hátralévő idő: 60 mp
+            </div>
+
+            <div id="hudData">
+                <span>Vonatok: <strong id="trainCount">0</strong></span>
+                <span>Pont: <strong id="scoreValue">0</strong></span>
+                <span>Cél: <strong id="targetTrack">2</strong></span>
+                <span>Típus: <strong id="trainType">Személy</strong></span>
+            </div>
+        </div>
+
+    </div>
+    <!-- Irányítópult -->
+    <div id="controlPanel">
+
+        <div class="panelBlock">
+            <h3>Jelzők</h3>
+
+            <button id="signalLeftBtn">
+                J1
+            </button>
+
+            <button id="signalRightBtn">
+                J2
+            </button>
+        </div>
+
+        <div class="panelBlock">
+            <h3>Váltó</h3>
+
+            <button id="switchBtn">
+                V1
+            </button>
+        </div>
+        <div class="panelBlock trainLegend">
+            <h3>Vonattípusok</h3>
+
+            <div class="legendItem">
+                <img src="assets/img/trains/gyors.png" alt="Gyors">
+                <span>Gyors</span>
+            </div>
+
+            <div class="legendItem">
+                <img src="assets/img/trains/szemely.png" alt="Személy">
+                <span>Személy</span>
+            </div>
+
+            <div class="legendItem">
+                <img src="assets/img/trains/teher.png" alt="Teher">
+                <span>Teher</span>
+            </div>
+        </div>
+
+    </div>
+    <button id="exitBtn">
+        ⬅ Menü
+    </button>
+    <div id="trainInfoPanel">
+        <h3>Érkező vonatok</h3>
+        <div id="trainInfoList">
+            Nincs érkező vonat
+        </div>
+    </div>
+    <!-- Játéktér -->
+    <canvas id="gameCanvas"></canvas>
+    <div id="gameOverPanel">
+
+        <h2>ÜTKÖZÉS!</h2>
+
+        <p>
+            A forgalom összeomlott.
+        </p>
+
+        <div id="gameOverButtons">
+
+            <button onclick="location.reload()">
+                Újra
+            </button>
+
+            <button id="menuButton">
+                Menü
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="js/game.js"></script>
+
+</body>
+
+</html>

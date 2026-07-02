@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="hu">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Regisztráció</title>
+
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body>
+    <!-- Regisztrációs oldal -->
+    <!-- Regisztrációs panel -->
+    <div class="loginContainer">
+        <h1>Léna</h1>
+        <p class="subtitle">
+            The Endless Worlds
+        </p>
+        <h2>Regisztráció</h2>
+        <!-- Regisztrációs űrlap -->
+        <form id="registerForm">
+            <label>
+                Felhasználónév
+            </label>
+            <input type="text" name="username" required>
+            <label>
+                Jelszó
+            </label>
+            <input type="password" name="password" required>
+            <button type="submit">
+                Regisztráció
+            </button>
+        </form>
+        <p class="authLinkText">
+            Van már fiókod?
+        </p>
+        <a class="authLink" href="login.html">
+            Bejelentkezés
+        </a>
+        <p></p>
+        <!-- Visszalépés a közös főmenübe -->
+        <button class="exitBtn" onclick="window.location.href='../index.html'">
+            Kilép
+        </button>
+    </div>
+    <!-- Regisztráció kezelése -->
+    <script>
+        document
+            .getElementById("registerForm")
+            .addEventListener("submit", function (event) {
+                event.preventDefault();
+                const formData =
+                    new FormData(this);
+                fetch("backend/register.php", {
+                    method: "POST",
+                    body: formData
+                })
+                    .then(response => response.json())
+                    .then(data => {
+                        alert(data.message);
+                        if (data.success) {
+                            window.location.href =
+                                "login.html";
+                        }
+                    });
+            });
+    </script>
+</body>
+
+</html>

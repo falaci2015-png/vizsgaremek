@@ -1,0 +1,157 @@
+/* Alapbeállítások */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Oldal alapstílusa */
+body {
+  min-height: 100vh;
+  font-family: Georgia, serif;
+  background: #050505;
+  color: white;
+  overflow: hidden;
+}
+
+/* Főmenü címe */
+.mainTitle {
+  position: fixed;
+  top: 28px;
+  width: 100%;
+  text-align: center;
+  z-index: 10;
+  font-size: clamp(2rem, 4vw, 4.5rem);
+  letter-spacing: 3px;
+  text-shadow:
+    0 0 12px black,
+    0 0 28px gold;
+}
+
+/* Négy játékpanel rácsos elrendezése */
+.gameGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  height: 100vh;
+}
+
+/* Játékpanelek közös megjelenése */
+.gamePanel {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 80px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  border-right: 2px solid rgba(255, 255, 255, 0.25);
+}
+
+.gamePanel:last-child {
+  border-right: none;
+}
+
+/* Sötét átmenet a háttérképek olvashatóbbá tételéhez */
+.gamePanel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.25),
+    rgba(0, 0, 0, 0.35),
+    rgba(0, 0, 0, 0.8)
+  );
+}
+
+/* Játékokhoz tartozó háttérképek */
+.lenaPanel {
+  background-image: url("../lena/assets/img/backgrounds/erdos_hatter.png");
+}
+
+.beamerPanel {
+  background-image: url("../beamer-racing/assets/img/garage/background.png");
+}
+
+.railPanel {
+  background-image: url("../nora-rail-control/assets/img/backgrounds/rail_bg.png");
+  background-color: #1d1d1d;
+}
+
+.redrockPanel {
+  background-image: url("../redrock-ranch/assets/img/background/bg.png");
+  background-color: #1d1d1d;
+}
+
+/* Panelen belüli szövegdoboz */
+.panelContent {
+  position: relative;
+  z-index: 2;
+  width: 85%;
+  max-width: 360px;
+  text-align: center;
+  padding: 24px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.62);
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+.panelContent h2 {
+  font-size: 1.7rem;
+  margin-bottom: 14px;
+  text-shadow: 0 0 8px black;
+}
+
+.panelContent p {
+  min-height: 54px;
+  font-size: 1rem;
+  line-height: 1.4;
+  margin-bottom: 22px;
+  color: #eee;
+}
+
+/* Játék indítása gomb */
+.startBtn {
+  display: inline-block;
+  padding: 13px 28px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #111;
+  background: linear-gradient(135deg, #ffe680, #c99522);
+  font-weight: bold;
+  letter-spacing: 0.5px;
+  box-shadow: 0 0 16px rgba(255, 220, 100, 0.55);
+  transition: all 0.2s ease;
+}
+
+.startBtn:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 26px rgba(255, 220, 100, 0.9);
+}
+
+/* Mobil és keskeny képernyős elrendezés */
+@media (max-width: 900px) {
+  body {
+    overflow-y: auto;
+  }
+
+  .mainTitle {
+    position: relative;
+    top: auto;
+    padding: 24px 12px;
+    background: #050505;
+  }
+
+  .gameGrid {
+    grid-template-columns: 1fr;
+    height: auto;
+  }
+
+  .gamePanel {
+    min-height: 70vh;
+    border-right: none;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.25);
+  }
+}

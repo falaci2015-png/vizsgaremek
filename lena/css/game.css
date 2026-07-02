@@ -1,0 +1,247 @@
+body {
+  margin: 0;
+  background: #222;
+  font-family: Arial, sans-serif;
+}
+
+/* =========================
+   JÁTÉK
+========================= */
+
+#gameContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
+
+  position: relative;
+}
+
+#gameArea {
+  width: 1000px;
+  height: 400px;
+
+  border: 3px solid white;
+  border-radius: 10px;
+
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  background-position: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* =========================
+   LÉNA
+========================= */
+
+#player {
+  position: absolute;
+
+  left: 50px;
+  bottom: 75px;
+
+  width: 130px;
+  height: 130px;
+
+  z-index: 5;
+}
+
+/* =========================
+   ELLENSÉG
+========================= */
+
+#enemy {
+  position: absolute;
+
+  right: 50px;
+  bottom: 75px;
+
+  width: 130px;
+  height: 130px;
+
+  z-index: 5;
+}
+
+/* =========================
+   GOMBOK
+========================= */
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+
+  border: none;
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  background: rgba(255, 255, 255, 0.9);
+}
+
+button:hover {
+  background: white;
+}
+
+/* =========================
+   KILÉP
+========================= */
+
+#exitButton {
+  position: absolute;
+
+  top: 20px;
+  right: 20px;
+
+  z-index: 20;
+}
+
+/* =========================
+   JÁTÉK GOMBOK
+========================= */
+
+#gameButtons {
+  position: absolute;
+
+  top: 20px;
+  left: 20px;
+
+  z-index: 20;
+
+  display: flex;
+  gap: 10px;
+}
+
+#jumpButton {
+  background: #4caf50;
+  color: white;
+}
+
+#shootButton {
+  background: #2196f3;
+  color: white;
+}
+
+/* Mobil */
+
+@media (max-width: 768px) {
+  #gameButtons {
+    top: 10px;
+    left: 10px;
+  }
+
+  #gameButtons button {
+    padding: 12px 18px;
+    font-size: 18px;
+  }
+}
+
+/* =========================
+   ELLENSÉGES LÖVEDÉK
+========================= */
+
+.enemyProjectile {
+  position: absolute;
+
+  width: 32px;
+  height: 16px;
+
+  background-image: url("../assets/img/bullet/mob.png");
+
+  background-size: contain;
+
+  background-repeat: no-repeat;
+
+  background-position: center;
+
+  z-index: 1000;
+}
+
+#hud {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  background: rgba(0, 0, 0, 0.6);
+
+  padding: 8px 12px;
+  border-radius: 10px;
+
+  color: white;
+  font-size: 18px;
+}
+
+#gameOverPanel {
+  display: none;
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: rgba(0, 0, 0, 0.9);
+
+  color: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  z-index: 999;
+}
+
+#victoryPanel {
+  display: none;
+
+  position: absolute;
+
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background: rgba(0, 0, 0, 0.9);
+
+  color: white;
+
+  padding: 30px;
+
+  border-radius: 15px;
+
+  text-align: center;
+
+  z-index: 999;
+}
+
+#missionText {
+  position: absolute;
+
+  top: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  background: rgba(0, 0, 0, 0.75);
+
+  color: white;
+
+  padding: 15px 25px;
+
+  border-radius: 10px;
+
+  text-align: center;
+
+  font-size: 18px;
+
+  z-index: 999;
+
+  display: none;
+
+  max-width: 80%;
+}

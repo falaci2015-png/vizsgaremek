@@ -1,0 +1,784 @@
+/* =========================
+   ALAPOK
+========================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  color: white;
+}
+
+/* =========================
+   FŐ ELRENDEZÉS
+========================= */
+
+#menuWrapper {
+  display: flex;
+  min-height: 100vh;
+
+  backdrop-filter: blur(2px);
+}
+
+/* =========================
+   BAL MENÜ
+========================= */
+
+#sidebar {
+  width: 260px;
+  background: rgba(0, 0, 0, 0.82);
+
+  padding: 30px 20px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+#logo {
+  margin-bottom: 40px;
+}
+
+#logo h1 {
+  font-size: 2rem;
+  color: #ffffff;
+}
+
+#logo p {
+  color: #cccccc;
+  margin-top: 5px;
+}
+
+/* =========================
+   MENÜ GOMBOK
+========================= */
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.menuBtn {
+  border: none;
+
+  background: #1f1f1f;
+
+  color: white;
+
+  padding: 14px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s;
+}
+
+.menuBtn:hover {
+  background: #333;
+}
+
+.menuBtn.active {
+  background: #4caf50;
+}
+
+/* =========================
+   JOBB TARTALOM
+========================= */
+
+#contentArea {
+  flex: 1;
+
+  padding: 40px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  overflow-y: auto;
+}
+
+/* =========================
+   PANELEK
+========================= */
+
+.panel {
+  display: none;
+}
+
+.activePanel {
+  display: block;
+}
+
+/* =========================
+   START PANEL
+========================= */
+
+#startPanel h2 {
+  text-align: center;
+  margin-bottom: 30px;
+
+  font-size: 2rem;
+}
+
+.previewArea {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 40px;
+
+  flex-wrap: wrap;
+}
+
+/* =========================
+   LÉNA
+========================= */
+
+#menuLena {
+  width: 220px;
+  height: auto;
+
+  image-rendering: pixelated;
+}
+
+/* =========================
+   ELLENSÉG
+========================= */
+
+#menuEnemy {
+  width: 220px;
+  height: auto;
+
+  image-rendering: pixelated;
+}
+
+/* =========================
+   KÖZÉPSŐ DOBOZ
+========================= */
+
+.welcomeBox {
+  max-width: 500px;
+
+  text-align: center;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  padding: 30px;
+
+  border-radius: 15px;
+}
+
+.welcomeBox h3 {
+  margin-bottom: 15px;
+}
+
+.welcomeBox p {
+  margin-bottom: 10px;
+}
+
+.currentSettings {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.currentSettings p {
+  margin: 8px 0;
+}
+
+/* =========================
+   START GOMB
+========================= */
+
+#startButton {
+  border: none;
+
+  padding: 15px 30px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  font-size: 1rem;
+
+  background: #4caf50;
+
+  color: white;
+
+  transition: 0.3s;
+}
+
+#startButton:hover {
+  background: #43a047;
+}
+
+/* =========================
+   BEÁLLÍTÁSOK
+========================= */
+
+#settingsPanel {
+  max-width: 700px;
+}
+
+#settingsPanel h2 {
+  margin-bottom: 20px;
+}
+
+#settingsPanel label {
+  display: block;
+
+  margin-top: 15px;
+  margin-bottom: 5px;
+}
+
+#settingsPanel input,
+#settingsPanel select {
+  width: 100%;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 8px;
+}
+
+#settingsPanel button {
+  margin-top: 20px;
+
+  border: none;
+
+  padding: 12px 25px;
+
+  border-radius: 8px;
+
+  background: #4caf50;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+/* =========================
+   RANGLISTA
+========================= */
+
+#leaderboardPanel {
+  max-width: none;
+  width: 100%;
+}
+
+#leaderboardPanel h2 {
+  margin-bottom: 20px;
+}
+
+#leaderboardPanel input {
+  width: 100%;
+
+  max-width: 300px;
+
+  padding: 10px;
+
+  margin-top: 10px;
+
+  border: none;
+
+  border-radius: 8px;
+}
+
+#leaderboardPanel button {
+  margin-top: 10px;
+
+  padding: 10px 20px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+/* =========================
+   LEÍRÁS
+========================= */
+
+#aboutPanel {
+  max-width: 800px;
+}
+
+#aboutPanel h2 {
+  margin-bottom: 20px;
+}
+
+#aboutPanel p {
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* =========================
+   MOBIL
+========================= */
+
+@media (max-width: 900px) {
+  #menuWrapper {
+    flex-direction: column;
+  }
+
+  #sidebar {
+    width: 100%;
+
+    padding: 15px;
+  }
+
+  nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .menuBtn {
+    flex: 1;
+    min-width: 120px;
+  }
+
+  #contentArea {
+    padding: 20px;
+  }
+
+  #menuLena,
+  #menuEnemy {
+    width: 140px;
+  }
+
+  .previewArea {
+    gap: 20px;
+  }
+}
+
+/* =========================
+   ALSÓ LOGO
+========================= */
+
+.bottomLogo {
+  margin-top: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding-top: 20px;
+}
+
+.bottomLogo img {
+  width: 160px;
+  max-width: 80%;
+
+  height: auto;
+
+  object-fit: contain;
+}
+
+/* Mobil optimalizálás */
+
+@media (max-width: 900px) {
+  .bottomLogo img {
+    width: 110px;
+  }
+}
+
+#loginInfo {
+  margin: 20px 15px 5px 15px;
+
+  color: white;
+
+  font-weight: bold;
+
+  font-size: 14px;
+
+  text-align: center;
+}
+
+#logoutButton {
+  width: 100%;
+
+  margin: 0 auto 15px auto;
+
+  display: block;
+
+  padding: 10px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  background: #333;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+#logoutButton:hover {
+  background: #555;
+}
+
+.bottomLogo {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 8px;
+}
+
+#playerNameInput:disabled {
+  background: #555;
+
+  color: #dddddd;
+
+  cursor: not-allowed;
+}
+
+/* =========================
+   BEÁLLÍTÁSOK FINOMÍTÁS
+========================= */
+
+#settingsPanel hr {
+  margin: 25px 0 18px 0;
+  border: none;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+}
+
+#settingsPanel h3 {
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+#settingsPanel input,
+#settingsPanel select {
+  margin-bottom: 12px;
+}
+
+#playerNameInput:disabled {
+  background: rgba(0, 0, 0, 0.65);
+  color: #ffffff;
+  font-weight: bold;
+  opacity: 1;
+}
+
+#playerNameInput:disabled::placeholder {
+  color: #ffffff;
+}
+
+/* =========================
+   ADMIN PANEL
+========================= */
+
+#adminBox {
+  margin-top: 20px;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.35);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  border-radius: 12px;
+}
+
+#adminBox h3 {
+  color: #ffffff;
+
+  margin-bottom: 15px;
+}
+
+.userRow {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 15px;
+
+  padding: 10px 0;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.userInfo {
+  color: white;
+}
+
+.deleteUserBtn {
+  background: #c0392b;
+
+  color: white;
+
+  border: none;
+
+  border-radius: 6px;
+
+  padding: 6px 12px;
+
+  cursor: pointer;
+}
+
+.deleteUserBtn:hover {
+  opacity: 0.85;
+}
+
+#adminBox button {
+  width: auto;
+  min-width: 150px;
+}
+
+#adminBox > button {
+  display: block;
+  margin: 15px 0 20px 0;
+  padding: 10px 18px;
+}
+
+#adminBox hr {
+  margin: 18px 0;
+}
+
+#usersList {
+  margin-top: 10px;
+}
+
+#adminBox > button {
+  background: #c0392b;
+  color: white;
+}
+
+#adminBox > button:hover {
+  background: #a93226;
+}
+
+.userRow {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 10px;
+  align-items: center;
+}
+
+.userInfo {
+  overflow-wrap: anywhere;
+}
+
+.userRow button {
+  white-space: nowrap;
+}
+
+.adminStats {
+  margin-bottom: 15px;
+
+  padding: 12px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  border-radius: 8px;
+
+  color: white;
+
+  line-height: 1.8;
+}
+
+/* diszkrét görgetősáv */
+
+.adminUsersBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+.adminUsersBox::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+}
+
+.adminUsersBox::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* mobilon egymás alá kerül */
+
+@media (max-width: 900px) {
+  .leaderboardLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .adminBox {
+    max-height: none;
+  }
+
+  .adminUsersBox {
+    max-height: 350px;
+  }
+}
+
+/* =========================
+   RANGLISTA VÉGLEGES
+========================= */
+
+#leaderboardPanel {
+  max-width: none;
+  width: 100%;
+}
+
+.leaderboardLayout {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 30px;
+  align-items: start;
+  width: 100%;
+  padding-top: 40px;
+}
+
+.leaderboardBox,
+.adminBox {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 14px;
+  padding: 18px;
+}
+
+.sectionBlock,
+.adminStatsBox,
+.adminUsersBox,
+#leaderboardAdminControls {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 16px;
+}
+
+.leaderboardBox h2 {
+  margin-bottom: 16px;
+}
+
+.sectionBlock h3,
+.adminUsersBox h3,
+#leaderboardAdminControls h3 {
+  margin-bottom: 14px;
+}
+
+#leaderboardList {
+  line-height: 1.8;
+}
+
+.adminBox {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 70vh;
+  min-width: 0;
+}
+
+.adminStatsBox {
+  margin-top: 0;
+  line-height: 1.8;
+}
+
+.adminUsersBox {
+  padding-right: 10px;
+}
+
+.usersScroll {
+  overflow-y: auto;
+  max-height: 320px;
+  padding-right: 8px;
+
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.35) rgba(255, 255, 255, 0.08);
+}
+
+.usersScroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.usersScroll::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+}
+
+.usersScroll::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.adminUsersBox::-webkit-scrollbar {
+  width: 6px;
+}
+
+.adminUsersBox::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 10px;
+}
+
+.adminUsersBox::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+#leaderboardAdminControls button {
+  background: #c0392b;
+  color: white;
+}
+
+#leaderboardAdminControls button:hover {
+  background: #a93226;
+}
+
+.userRow {
+  min-height: 48px;
+}
+
+@media (max-width: 900px) {
+  .leaderboardLayout {
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+  }
+
+  .adminBox {
+    max-height: none;
+  }
+
+  .usersScroll {
+    max-height: 350px;
+  }
+}
+
+#projectPortal {
+  width: 160px;
+  max-width: 80%;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  animation: portalPulse 2.5s infinite;
+}
+
+#projectPortal:hover {
+  transform: scale(1.08);
+}
+
+@keyframes portalPulse {
+  0% {
+    filter: drop-shadow(0 0 5px rgba(80, 255, 180, 0.3));
+  }
+
+  50% {
+    filter: drop-shadow(0 0 18px rgba(80, 255, 180, 0.9));
+  }
+
+  100% {
+    filter: drop-shadow(0 0 5px rgba(80, 255, 180, 0.3));
+  }
+}
