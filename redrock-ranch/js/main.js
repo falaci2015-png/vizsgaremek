@@ -37,7 +37,7 @@ document.getElementById("adminBtn").addEventListener("click", () => {
 });
 
 document.getElementById("projectExitZone").addEventListener("click", () => {
-  location.href = "../index.html";
+  location.href = "../index.php";
 });
 document.getElementById("logoutBtn").addEventListener("click", () => {
   fetch("backend/logout.php")

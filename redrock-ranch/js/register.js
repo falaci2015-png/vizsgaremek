@@ -72,6 +72,6 @@ const projectExitZone = document.getElementById("projectExitZone");
 
 if (projectExitZone) {
   projectExitZone.addEventListener("click", () => {
-    location.href = "../index.html";
+    location.href = "../index.php";
   });
 }

@@ -98,6 +98,53 @@ body {
   backdrop-filter: blur(4px);
 }
 
+/* Játékpanel új elrendezése: bal oldalon indító, jobb oldalon mini HUD */
+.panelWithStatus {
+  max-width: 680px;
+  display: grid;
+  grid-template-columns: 1fr 170px;
+  gap: 22px;
+  align-items: center;
+  text-align: left;
+}
+
+/* A játék címe, leírása és indítógombja */
+.gameInfo {
+  text-align: center;
+}
+
+/* Játékonkénti kis információs HUD */
+.statusBox {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 220, 100, 0.35);
+  box-shadow: 0 0 18px rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(5px);
+  width: 220px;
+}
+
+/* HUD sorok */
+.statusBox p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin: 10px 0;
+
+  min-height: auto;
+
+  font-size: 0.92rem;
+
+  color: #eee;
+}
+
+/* HUD kiemelt értékek */
+.statusBox strong {
+  color: #67ff84;
+  font-weight: bold;
+}
+
 .panelContent h2 {
   font-size: 1.7rem;
   margin-bottom: 14px;
@@ -110,6 +157,24 @@ body {
   line-height: 1.4;
   margin-bottom: 22px;
   color: #eee;
+}
+/* A státusz HUD sorai ne örököljék a nagy panel bekezdés-stílusát */
+.panelContent .statusBox p {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  min-height: auto;
+  margin: 8px 0;
+
+  font-size: 0.92rem;
+  line-height: 1.25;
+  color: #eee;
+}
+/* HUD értékek zöld kiemelése */
+.panelContent .statusBox strong {
+  color: #67ff84;
+  font-weight: bold;
 }
 
 /* Játék indítása gomb */

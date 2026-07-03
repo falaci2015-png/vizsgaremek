@@ -108,7 +108,7 @@ menuExitZone.addEventListener("click", () => {
   projectExitZone.style.display = "block";
 });
 projectExitZone.addEventListener("click", () => {
-  window.location.href = "../index.html";
+  window.location.href = "../index.php";
 });
 
 exitGlow.style.display = "block";
