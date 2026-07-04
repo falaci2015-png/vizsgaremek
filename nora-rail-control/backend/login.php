@@ -1,4 +1,5 @@
 <?php
+// nora-rail-controll
 session_start();
 header("Content-Type: application/json; charset=utf-8");
 
@@ -34,6 +35,18 @@ if (!$user || !password_verify($password, $user["password_hash"])) {
     exit;
 }
 // Sikeres bejelentkezés után a felhasználó adatainak mentése a session-be
+// Felhasználó online állapotának frissítése
+$stmt = $pdo->prepare("
+    UPDATE users
+    SET
+        is_online = 1,
+        last_active = NOW()
+    WHERE id = ?
+");
+
+$stmt->execute([
+    $user["id"]
+]);
 $_SESSION["user_id"] = $user["id"];
 $_SESSION["username"] = $user["username"];
 $_SESSION["role"] = $user["role"];

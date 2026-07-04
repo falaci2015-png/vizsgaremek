@@ -23,8 +23,9 @@ CREATE TABLE users (
     role ENUM('user','admin')
     DEFAULT 'user',
 
-    created_at TIMESTAMP
-    DEFAULT CURRENT_TIMESTAMP
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_online TINYINT(1) NOT NULL DEFAULT 0,
+    last_active DATETIME DEFAULT NULL
 );
 
 -- Alap admin felhasználó

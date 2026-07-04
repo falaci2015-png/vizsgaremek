@@ -1,5 +1,5 @@
 <?php
-// Felhasználó bejelentkeztetése
+// Felhasználó bejelentkeztetése beamer-racing
 session_start();
 
 header("Content-Type: application/json");
@@ -53,7 +53,18 @@ try {
 
         exit;
     }
+    // Felhasználó online állapotának frissítése
+    $stmt = $pdo->prepare("
+    UPDATE users
+    SET
+        is_online = 1,
+        last_active = NOW()
+    WHERE id = ?
+");
 
+    $stmt->execute([
+        $user["id"]
+    ]);
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["username"] = $user["username"];
     $_SESSION["role"] = $user["role"];

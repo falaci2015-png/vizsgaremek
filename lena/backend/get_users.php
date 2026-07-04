@@ -1,5 +1,5 @@
 <?php
-// Felhasználók listájának lekérdezése
+// Felhasználók listájának lekérdezése lena
 session_start();
 
 require_once "db.php";

@@ -1,6 +1,20 @@
 <?php
-
+// nora-rail-controll
 session_start();
+require_once "db.php";
+// Felhasználó offline állapotának beállítása
+if (isset($_SESSION["user_id"])) {
+
+    $stmt = $pdo->prepare("
+        UPDATE users
+        SET is_online = 0
+        WHERE id = ?
+    ");
+
+    $stmt->execute([
+        $_SESSION["user_id"]
+    ]);
+}
 // Felhasználói session törlése
 session_unset();
 session_destroy();

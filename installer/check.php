@@ -85,6 +85,37 @@ function getUserCount($databaseName)
         return 0;
     }
 }
+/*
+|--------------------------------------------------------------------------
+| Aktív felhasználók számának lekérdezése
+|--------------------------------------------------------------------------
+| Azokat számolja aktívnak, akik be vannak jelentkezve,
+| és az elmúlt 5 percben volt friss aktivitásuk.
+|--------------------------------------------------------------------------
+*/
+
+function getActiveUserCount($databaseName)
+{
+    try {
+        $pdo = new PDO(
+            "mysql:host=localhost;dbname=$databaseName;charset=utf8mb4",
+            "root",
+            "",
+            [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
+        );
+
+        $stmt = $pdo->query("
+            SELECT COUNT(*)
+            FROM users
+            WHERE is_online = 1
+              AND last_active >= NOW() - INTERVAL 5 MINUTE
+        ");
+
+        return (int)$stmt->fetchColumn();
+    } catch (PDOException $e) {
+        return 0;
+    }
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -100,6 +131,6 @@ foreach ($games as $key => $game) {
     $gameStatuses[$key] = [
         "database" => "Aktív",
         "users" => getUserCount($game["database"]),
-        "activeUsers" => 0
+        "activeUsers" => getActiveUserCount($game["database"])
     ];
 }

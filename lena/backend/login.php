@@ -1,5 +1,5 @@
 <?php
-// Felhasználó bejelentkeztetése
+// Felhasználó bejelentkeztetése lena
 session_start();
 
 require_once "db.php";
@@ -45,7 +45,21 @@ if ($result->num_rows === 0) {
 $user = $result->fetch_assoc();
 // Jelszó ellenőrzése és munkamenet indítása
 if (password_verify($password, $user["password"])) {
+    // Felhasználó online állapotának frissítése
+    $update = $conn->prepare("
+    UPDATE users
+    SET
+        is_online = 1,
+        last_active = NOW()
+    WHERE id = ?
+");
 
+    $update->bind_param(
+        "i",
+        $user["id"]
+    );
+
+    $update->execute();
     $_SESSION["user_id"] = $user["id"];
     $_SESSION["username"] = $user["username"];
     $_SESSION["role"] = $user["role"];
