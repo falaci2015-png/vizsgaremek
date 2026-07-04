@@ -1,11 +1,3 @@
-CREATE DATABASE IF NOT EXISTS redrock_ranch
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_hungarian_ci;
-
-USE redrock_ranch;
-/*DROP TABLE IF EXISTS leaderboard;
-DROP TABLE IF EXISTS users;*/
-
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,

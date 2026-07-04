@@ -1,9 +1,3 @@
-CREATE DATABASE IF NOT EXISTS rail_control
-CHARACTER SET utf8mb4
-COLLATE utf8mb4_hungarian_ci;
-
-USE rail_control;
-
 CREATE TABLE users (
     id INT AUTO_INCREMENT PRIMARY KEY,
     username VARCHAR(50) NOT NULL UNIQUE,
