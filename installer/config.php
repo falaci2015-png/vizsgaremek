@@ -8,41 +8,58 @@
 | az adatokat, így nem kell több helyen módosítani.
 |--------------------------------------------------------------------------
 */
-
-// A projekt főkönyvtára
 define("PROJECT_ROOT", dirname(__DIR__));
+define("INSTALLER_VERSION", "1.1");
 
-// Installer verzió
-define("INSTALLER_VERSION", "1.0");
-/*
-|--------------------------------------------------------------------------
-| Vizsgaremek játékok adatbázis beállításai
-|--------------------------------------------------------------------------
-| Minden játék adatbázisának neve és a hozzá tartozó SQL fájl.
-| Az installer ezeket fogja használni automatikus telepítéskor.
-|--------------------------------------------------------------------------
-*/
+$isLocalhost =
+    $_SERVER["HTTP_HOST"] === "localhost" ||
+    $_SERVER["HTTP_HOST"] === "127.0.0.1" ||
+    substr($_SERVER["HTTP_HOST"], 0, 10) === "localhost:";
 
-$games = [
+if ($isLocalhost) {
+    $dbHost = "127.0.0.1";
+    $dbUser = "root";
+    $dbPassword = "";
 
-    "lena" => [
-        "database" => "lena_game",
-        "sql" => PROJECT_ROOT . "/lena/database/lena_game.sql"
-    ],
+    $games = [
+        "lena" => [
+            "database" => "lena_game",
+            "sql" => PROJECT_ROOT . "/lena/database/lena_game.sql"
+        ],
+        "beamer" => [
+            "database" => "beamer_racing",
+            "sql" => PROJECT_ROOT . "/beamer-racing/database/beamer_racing.sql"
+        ],
+        "rail" => [
+            "database" => "rail_control",
+            "sql" => PROJECT_ROOT . "/nora-rail-control/database/rail_control.sql"
+        ],
+        "redrock" => [
+            "database" => "redrock_ranch",
+            "sql" => PROJECT_ROOT . "/redrock-ranch/database/redrock_ranch.sql"
+        ]
+    ];
+} else {
+    $dbHost = "sql208.infinityfree.com";
+    $dbUser = "if0_41754972";
+    $dbPassword = "infinity password";
 
-    "beamer" => [
-        "database" => "beamer_racing",
-        "sql" => PROJECT_ROOT . "/beamer-racing/database/beamer_racing.sql"
-    ],
-
-    "rail" => [
-        "database" => "rail_control",
-        "sql" => PROJECT_ROOT . "/nora-rail-control/database/rail_control.sql"
-    ],
-
-    "redrock" => [
-        "database" => "redrock_ranch",
-        "sql" => PROJECT_ROOT . "/redrock-ranch/database/redrock_ranch.sql"
-    ]
-
-];
+    $games = [
+        "lena" => [
+            "database" => "if0_41754972_lena_game",
+            "sql" => PROJECT_ROOT . "/lena/database/lena_game.sql"
+        ],
+        "beamer" => [
+            "database" => "if0_41754972_beamer_racing",
+            "sql" => PROJECT_ROOT . "/beamer-racing/database/beamer_racing.sql"
+        ],
+        "rail" => [
+            "database" => "if0_41754972_rail_control",
+            "sql" => PROJECT_ROOT . "/nora-rail-control/database/rail_control.sql"
+        ],
+        "redrock" => [
+            "database" => "if0_41754972_redrock_ranch",
+            "sql" => PROJECT_ROOT . "/redrock-ranch/database/redrock_ranch.sql"
+        ]
+    ];
+}

@@ -18,10 +18,13 @@
 |--------------------------------------------------------------------------
 */
 require_once __DIR__ . "/config.php";
-require_once __DIR__ . "/install.php";
+
+if ($isLocalhost) {
+    require_once __DIR__ . "/install.php";
+    installMissingDatabases($games);
+}
 
 // Hiányzó adatbázisok automatikus létrehozása
-installMissingDatabases($games);
 /*
 |--------------------------------------------------------------------------
 | Telepítési állapot ellenőrzése
@@ -30,17 +33,6 @@ installMissingDatabases($games);
 | Ha nincs, akkor később automatikusan importálni fogjuk a SQL fájlt.
 |--------------------------------------------------------------------------
 */
-
-$needsInstall = [];
-
-foreach ($games as $key => $game) {
-
-    $needsInstall[$key] =
-        !tableExists(
-            $game["database"],
-            "users"
-        );
-}
 /*
 |--------------------------------------------------------------------------
 | Hiányzó táblák automatikus importálása
@@ -50,14 +42,28 @@ foreach ($games as $key => $game) {
 |--------------------------------------------------------------------------
 */
 
-foreach ($games as $key => $game) {
+if ($isLocalhost) {
 
-    if ($needsInstall[$key]) {
+    $needsInstall = [];
 
-        importSqlFile(
-            $game["database"],
-            $game["sql"]
-        );
+    foreach ($games as $key => $game) {
+
+        $needsInstall[$key] =
+            !tableExists(
+                $game["database"],
+                "users"
+            );
+    }
+
+    foreach ($games as $key => $game) {
+
+        if ($needsInstall[$key]) {
+
+            importSqlFile(
+                $game["database"],
+                $game["sql"]
+            );
+        }
     }
 }
 /*
@@ -73,9 +79,9 @@ function getUserCount($databaseName)
 {
     try {
         $pdo = new PDO(
-            "mysql:host=localhost;dbname=$databaseName;charset=utf8mb4",
-            "root",
-            "",
+            "mysql:host=" . $GLOBALS["dbHost"] . ";dbname=$databaseName;charset=utf8mb4",
+            $GLOBALS["dbUser"],
+            $GLOBALS["dbPassword"],
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
         );
 
@@ -98,9 +104,9 @@ function getActiveUserCount($databaseName)
 {
     try {
         $pdo = new PDO(
-            "mysql:host=localhost;dbname=$databaseName;charset=utf8mb4",
-            "root",
-            "",
+            "mysql:host=" . $GLOBALS["dbHost"] . ";dbname=$databaseName;charset=utf8mb4",
+            $GLOBALS["dbUser"],
+            $GLOBALS["dbPassword"],
             [PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]
         );
 
