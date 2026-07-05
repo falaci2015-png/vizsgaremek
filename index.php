@@ -38,6 +38,75 @@ require_once "installer/check.php";
                 <img src="img/nagy_logo.png" alt="FBU TEAM vizsgaremek logó" class="fbuBigLogo">
             </div>
         </div>
+
+        <!-- Online információ -->
+        <div class="infoIconBox">
+
+            <img src="img/info.png"
+                alt="Online információ"
+                class="infoIcon">
+
+            <div class="infoPopup">
+                <h3>Online információ</h3>
+
+                <h4>Gyorsítótár frissítése</h4>
+
+                <p>
+                    Ha a <strong>Belépés</strong> vagy
+                    <strong>Regisztráció</strong> gomb első kattintásra nem reagál,
+                    frissítsd az oldalt:
+                </p>
+
+                <p class="shortcut">CTRL + SHIFT + R</p>
+
+                <p>vagy</p>
+
+                <p class="shortcut">CTRL + F5</p>
+
+                <p class="smallText">
+                    Ez a böngésző gyorsítótára miatt fordulhat elő.
+                </p>
+
+                <hr>
+
+                <h4>A Vizsgaremekről</h4>
+
+                <ul>
+                    <li>4 önálló webböngészős játékgyűjtemény</li>
+                    <li>Külön felhasználókezelés minden játékhoz</li>
+                    <li>Saját adatbázis és online ranglista játékonként</li>
+                    <li>Automatikus rendszerellenőrzés indításkor</li>
+                </ul>
+
+                <hr>
+
+                <h4>Rendszerinformáció</h4>
+
+                <p>
+                    A kezdőoldalon megjelenő információk automatikusan frissülnek.
+                </p>
+
+                <ul>
+                    <li>Adatbázis állapota</li>
+                    <li>Regisztrált felhasználók száma</li>
+                    <li>Aktív játékosok száma</li>
+                </ul>
+
+                <hr>
+
+                <h4>F.B.U. Team</h4>
+
+                <p>
+                    A Vizsgaremek a <strong>Szoftverfejlesztő és tesztelő</strong>
+                    szakmai vizsga keretében készült.
+                </p>
+
+                <p class="smallText">
+                    Köszönjük, hogy kipróbálod játékainkat!
+                </p>
+            </div>
+
+        </div>
     </header>
 
     <!-- A négy játék indítópanelje -->
