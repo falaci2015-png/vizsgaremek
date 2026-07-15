@@ -37,6 +37,10 @@ if ($isLocalhost) {
         "redrock" => [
             "database" => "redrock_ranch",
             "sql" => PROJECT_ROOT . "/redrock-ranch/database/redrock_ranch.sql"
+        ],
+        "ufo" => [
+            "database" => "ufo_over_the_city",
+            "sql" => PROJECT_ROOT . "/ufo-over-the-city/database/ufo_over_the_city.sql"
         ]
     ];
 } else {
@@ -60,6 +64,10 @@ if ($isLocalhost) {
         "redrock" => [
             "database" => "if0_41754972_redrock_ranch",
             "sql" => PROJECT_ROOT . "/redrock-ranch/database/redrock_ranch.sql"
+        ],
+        "ufo" => [
+            "database" => "if0_41754972_ufo_over_the_city",
+            "sql" => PROJECT_ROOT . "/ufo-over-the-city/database/ufo_over_the_city.sql"
         ]
     ];
 }

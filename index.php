@@ -107,6 +107,53 @@ require_once "installer/check.php";
             </div>
 
         </div>
+        <!-- +1 bónuszjáték ikon -->
+        <div class="bonusGameBox">
+
+            <button
+                class="bonusGameIcon"
+                type="button"
+                aria-label="UFO Over the City bónuszjáték">
+
+                <span class="bonusPlus">+1</span>
+
+                <span class="bonusLabel">BONUSZ</span>
+
+            </button>
+
+            <div class="bonusGamePopup">
+
+                <p class="bonusEyebrow">
+                    F.B.U. TEAM – EXTRA JÁTÉK
+                </p>
+
+                <h3>UFO Over the City</h3>
+
+                <p>
+                    Irányíts egy idegen űrhajót, repülj végig
+                    az adatbázisból felépített városok felett,
+                    és hajts végre minél több sikeres elrablást.
+                </p>
+
+                <ul>
+                    <li>Saját felhasználói rendszer</li>
+                    <li>Online ranglista</li>
+                    <li>Város- és pályaszerkesztő</li>
+                    <li>Adminisztrációs felület</li>
+                </ul>
+
+                <a
+                    class="bonusStartButton"
+                    href="ufo-over-the-city/index.php">
+
+                    BÓNUSZJÁTÉK INDÍTÁSA
+
+                </a>
+
+            </div>
+
+        </div>
+
     </header>
 
     <!-- A négy játék indítópanelje -->

@@ -109,11 +109,22 @@ function importSqlFile($databaseName, $sqlFilePath)
 
     $sql = file_get_contents($sqlFilePath);
 
+    // UTF-8 BOM eltávolítása, ha van
+    $sql = preg_replace('/^\xEF\xBB\xBF/', '', $sql);
+
     // CREATE DATABASE sorok eltávolítása
-    $sql = preg_replace('/CREATE DATABASE.*?;/is', '', $sql);
+    $sql = preg_replace(
+        '/CREATE\s+DATABASE\s+.*?;/is',
+        '',
+        $sql
+    );
 
     // USE adatbázisnév sorok eltávolítása
-    $sql = preg_replace('/USE\s+`?.*?`?\s*;/is', '', $sql);
+    $sql = preg_replace(
+        '/USE\s+`?.*?`?\s*;/is',
+        '',
+        $sql
+    );
 
     $pdo = new PDO(
         "mysql:host=localhost;dbname=$databaseName;charset=utf8mb4",
@@ -124,8 +135,56 @@ function importSqlFile($databaseName, $sqlFilePath)
         ]
     );
 
-    // Az SQL fájl teljes tartalmának futtatása
-    $pdo->exec($sql);
+    /*
+     * Az SQL fájlt utasításonként futtatjuk.
+     * A DELIMITER nem SQL utasítás, hanem phpMyAdmin/MySQL kliens parancs,
+     * ezért a PHP külön kezeli a triggerek $$ lezárását.
+     */
+    $delimiter = ";";
+    $statement = "";
+
+    $lines = preg_split('/\R/', $sql);
+
+    foreach ($lines as $line) {
+        $trimmedLine = trim($line);
+
+        // DELIMITER $$ vagy DELIMITER ; felismerése
+        if (preg_match('/^DELIMITER\s+(.+)$/i', $trimmedLine, $matches)) {
+            $delimiter = trim($matches[1]);
+            continue;
+        }
+
+        $statement .= $line . PHP_EOL;
+
+        $trimmedStatement = rtrim($statement);
+
+        if (
+            $trimmedStatement !== "" &&
+            str_ends_with($trimmedStatement, $delimiter)
+        ) {
+            // Az aktuális lezárójel eltávolítása
+            $statementToRun = substr(
+                $trimmedStatement,
+                0,
+                -strlen($delimiter)
+            );
+
+            $statementToRun = trim($statementToRun);
+
+            if ($statementToRun !== "") {
+                $pdo->exec($statementToRun);
+            }
+
+            $statement = "";
+        }
+    }
+
+    // Biztonsági futtatás, ha maradt lezáratlan utasítás
+    $remainingStatement = trim($statement);
+
+    if ($remainingStatement !== "") {
+        $pdo->exec($remainingStatement);
+    }
 
     return true;
 }

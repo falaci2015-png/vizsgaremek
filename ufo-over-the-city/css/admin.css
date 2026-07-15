@@ -1,0 +1,1213 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  color: #ffffff;
+
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.75)),
+    url("../assets/menu/main_menu_background.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+button,
+a {
+  font: inherit;
+}
+
+.admin-page {
+  width: 100%;
+  min-height: 100vh;
+
+  display: flex;
+}
+
+/* Bal oldali admin menü */
+.admin-sidebar {
+  width: 290px;
+  min-height: 100vh;
+
+  padding: 30px 22px;
+
+  background: rgba(0, 0, 0, 0.82);
+
+  border-right: 2px solid rgba(0, 200, 255, 0.45);
+
+  display: flex;
+  flex-direction: column;
+
+  box-shadow: 8px 0 30px rgba(0, 0, 0, 0.45);
+}
+
+.admin-title {
+  margin-bottom: 35px;
+
+  text-align: center;
+}
+
+.admin-title h1 {
+  margin-bottom: 12px;
+
+  color: #8fdcff;
+
+  font-size: 30px;
+
+  letter-spacing: 2px;
+
+  text-shadow: 0 0 14px #00b7ff;
+}
+
+.admin-title p {
+  color: #d8d8d8;
+
+  font-size: 14px;
+}
+
+.admin-title strong {
+  color: #ffffff;
+}
+
+/* Admin navigáció */
+.admin-menu {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.admin-menu-button {
+  width: 100%;
+
+  padding: 13px 15px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.42);
+
+  border: 2px solid rgba(0, 200, 255, 0.55);
+  border-radius: 9px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  text-align: left;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+
+.admin-menu-button:hover {
+  color: #000000;
+
+  background: #00c8ff;
+
+  transform: translateX(4px);
+
+  box-shadow: 0 0 14px rgba(0, 200, 255, 0.65);
+}
+
+.admin-menu-button.active {
+  color: #000000;
+
+  background: #8fdcff;
+
+  border-color: #8fdcff;
+
+  box-shadow: 0 0 16px rgba(0, 200, 255, 0.75);
+}
+
+/* Alsó gombok */
+.admin-sidebar-bottom {
+  margin-top: auto;
+
+  padding-top: 30px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+}
+
+.admin-link {
+  width: 100%;
+
+  padding: 12px 14px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  border: 2px solid rgba(255, 255, 255, 0.28);
+  border-radius: 8px;
+
+  text-decoration: none;
+  text-align: center;
+
+  cursor: pointer;
+
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    color 0.2s;
+}
+
+.admin-link:hover {
+  color: #000000;
+
+  background: #ffffff;
+
+  border-color: #ffffff;
+}
+
+.logout-button {
+  color: #ffb5b5;
+
+  border-color: rgba(255, 70, 70, 0.6);
+}
+
+.logout-button:hover {
+  color: #ffffff;
+
+  background: #b72121;
+
+  border-color: #ff5555;
+}
+
+/* Jobb oldali tartalom */
+.admin-content {
+  flex: 1;
+
+  min-width: 0;
+
+  padding: 35px;
+}
+
+.admin-content-header {
+  margin-bottom: 28px;
+
+  padding: 24px 28px;
+
+  background: rgba(0, 0, 0, 0.68);
+
+  border: 2px solid rgba(0, 200, 255, 0.35);
+  border-radius: 14px;
+
+  box-shadow: 0 0 24px rgba(0, 0, 0, 0.35);
+}
+
+.admin-content-header h2 {
+  margin-bottom: 7px;
+
+  color: #8fdcff;
+
+  font-size: 34px;
+
+  text-shadow: 0 0 11px rgba(0, 183, 255, 0.85);
+}
+
+.admin-content-header p {
+  color: #cccccc;
+}
+
+/* Tartalmi szakaszok */
+.admin-section {
+  display: none;
+}
+
+.admin-section.active {
+  display: block;
+}
+
+/* Statisztikai kártyák */
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, minmax(170px, 1fr));
+
+  gap: 20px;
+}
+
+.stat-card {
+  min-height: 160px;
+
+  padding: 24px;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  border: 2px solid rgba(0, 200, 255, 0.4);
+  border-radius: 14px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.38);
+
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+
+  border-color: #00c8ff;
+
+  box-shadow: 0 0 20px rgba(0, 200, 255, 0.38);
+}
+
+.stat-card h3 {
+  margin-bottom: 18px;
+
+  color: #d9f5ff;
+
+  font-size: 18px;
+
+  text-align: center;
+}
+
+.stat-card p {
+  color: #8fdcff;
+
+  font-size: 43px;
+  font-weight: bold;
+
+  text-shadow: 0 0 12px rgba(0, 183, 255, 0.85);
+}
+
+/* Egyelőre üres admin tartalmak */
+.section-placeholder {
+  min-height: 360px;
+
+  padding: 35px;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  border: 2px solid rgba(0, 200, 255, 0.35);
+  border-radius: 14px;
+
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.38);
+}
+
+.section-placeholder h3 {
+  margin-bottom: 15px;
+
+  color: #8fdcff;
+
+  font-size: 25px;
+}
+
+.section-placeholder p {
+  color: #d0d0d0;
+
+  font-size: 17px;
+  line-height: 1.6;
+}
+/* Admin adatpanelek */
+.admin-data-panel {
+  padding: 28px;
+
+  background: rgba(0, 0, 0, 0.74);
+
+  border: 2px solid rgba(0, 200, 255, 0.35);
+  border-radius: 14px;
+
+  box-shadow: 0 0 22px rgba(0, 0, 0, 0.38);
+}
+
+.admin-section-heading {
+  margin-bottom: 22px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 20px;
+}
+
+.admin-section-heading h3 {
+  margin-bottom: 6px;
+
+  color: #8fdcff;
+
+  font-size: 25px;
+}
+
+.admin-section-heading p {
+  color: #d0d0d0;
+
+  line-height: 1.5;
+}
+
+.admin-action-button,
+.admin-danger-button {
+  padding: 11px 18px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  border: 2px solid rgba(0, 200, 255, 0.65);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.admin-action-button:hover:not(:disabled) {
+  color: #000000;
+
+  background: #8fdcff;
+
+  box-shadow: 0 0 14px rgba(0, 200, 255, 0.65);
+
+  transform: translateY(-2px);
+}
+
+.admin-danger-button {
+  color: #ffb5b5;
+
+  border-color: rgba(255, 70, 70, 0.65);
+}
+
+.admin-danger-button:hover:not(:disabled) {
+  color: #ffffff;
+
+  background: #b72121;
+
+  border-color: #ff5555;
+
+  box-shadow: 0 0 14px rgba(255, 70, 70, 0.45);
+
+  transform: translateY(-2px);
+}
+
+.admin-action-button:disabled,
+.admin-danger-button:disabled {
+  opacity: 0.45;
+
+  cursor: not-allowed;
+}
+
+/* Városszerkesztő */
+.city-editor-layout {
+  display: grid;
+
+  grid-template-columns: 260px minmax(0, 1fr);
+
+  gap: 22px;
+}
+
+.city-list-panel,
+.city-editor-panel {
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  border: 1px solid rgba(0, 200, 255, 0.35);
+  border-radius: 11px;
+}
+
+.city-list-panel h4 {
+  margin-bottom: 15px;
+
+  color: #8fdcff;
+
+  font-size: 19px;
+}
+
+#city-list {
+  min-height: 420px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 9px;
+}
+
+.city-editor-header {
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+
+  gap: 20px;
+}
+
+.city-name-field {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.city-name-field label {
+  color: #d9f5ff;
+
+  font-weight: bold;
+}
+
+.city-name-field input {
+  width: 100%;
+
+  padding: 11px 12px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  border: 2px solid rgba(0, 200, 255, 0.42);
+  border-radius: 7px;
+
+  outline: none;
+}
+
+.city-name-field input:focus {
+  border-color: #8fdcff;
+
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.45);
+}
+
+.city-counter {
+  min-width: 120px;
+
+  padding: 11px 14px;
+
+  color: #d0d0d0;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  border: 1px solid rgba(0, 200, 255, 0.35);
+  border-radius: 7px;
+
+  text-align: center;
+}
+
+.city-counter strong {
+  color: #8fdcff;
+}
+
+.city-buildings-list {
+  min-height: 360px;
+
+  padding: 14px;
+
+  background: rgba(0, 0, 0, 0.38);
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 8px;
+}
+
+.city-empty-message {
+  color: #bdbdbd;
+
+  text-align: center;
+
+  line-height: 330px;
+}
+
+.city-editor-actions {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: flex-end;
+
+  gap: 12px;
+}
+
+.admin-message {
+  min-height: 22px;
+
+  margin-bottom: 14px;
+
+  font-weight: bold;
+}
+/* Kisebb képernyőkhöz */
+@media (max-width: 1100px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, minmax(170px, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+
+  .admin-page {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    min-height: auto;
+  }
+
+  .admin-content {
+    padding: 20px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Felhasználók táblázata */
+.admin-table-wrapper {
+  width: 100%;
+
+  overflow-x: auto;
+
+  border: 1px solid rgba(0, 200, 255, 0.28);
+  border-radius: 10px;
+}
+
+.admin-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  background: rgba(0, 0, 0, 0.48);
+}
+
+.admin-table thead {
+  background: rgba(0, 200, 255, 0.14);
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 13px 14px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+  text-align: left;
+  vertical-align: middle;
+}
+
+.admin-table th {
+  color: #8fdcff;
+
+  font-size: 14px;
+  letter-spacing: 0.4px;
+}
+
+.admin-table td {
+  color: #eeeeee;
+
+  font-size: 14px;
+}
+
+.admin-table tbody tr {
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.admin-table tbody tr:hover {
+  background: rgba(0, 200, 255, 0.08);
+
+  box-shadow: inset 3px 0 0 #00c8ff;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Jogosultság választó */
+.admin-role-select {
+  min-width: 130px;
+
+  padding: 8px 10px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.78);
+
+  border: 1px solid rgba(0, 200, 255, 0.52);
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  outline: none;
+}
+
+.admin-role-select:focus {
+  border-color: #8fdcff;
+
+  box-shadow: 0 0 9px rgba(0, 200, 255, 0.42);
+}
+
+/* Kis műveleti gombok */
+.admin-small-button {
+  padding: 7px 11px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  border: 1px solid rgba(0, 200, 255, 0.58);
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 12px;
+  font-weight: bold;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.admin-small-button:hover {
+  color: #000000;
+
+  background: #8fdcff;
+
+  border-color: #8fdcff;
+
+  box-shadow: 0 0 10px rgba(0, 200, 255, 0.5);
+
+  transform: translateY(-1px);
+}
+
+/* Törlés gomb külön piros stílussal */
+.delete-user-button {
+  margin-left: 6px;
+
+  color: #ffb5b5;
+
+  border-color: rgba(255, 70, 70, 0.62);
+}
+
+.delete-user-button:hover {
+  color: #ffffff;
+
+  background: #b72121;
+
+  border-color: #ff5555;
+
+  box-shadow: 0 0 10px rgba(255, 70, 70, 0.42);
+}
+
+/* Admin üzenetek */
+.admin-message {
+  min-height: 22px;
+
+  margin-bottom: 14px;
+
+  padding: 6px 0;
+
+  font-weight: bold;
+}
+/* Városhoz tartozó házak listája */
+.city-buildings-list {
+  max-height: 560px;
+
+  overflow-y: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 12px;
+}
+
+/* Egy ház kártyája */
+.city-building-item {
+  min-height: 118px;
+
+  padding: 10px;
+
+  background: rgba(0, 0, 0, 0.58);
+
+  border: 1px solid rgba(0, 200, 255, 0.32);
+  border-radius: 9px;
+
+  display: grid;
+
+  grid-template-columns: 42px 72px minmax(0, 1fr) 72px;
+
+  align-items: center;
+
+  gap: 10px;
+
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.city-building-item:hover {
+  background: rgba(0, 200, 255, 0.08);
+
+  border-color: rgba(0, 200, 255, 0.72);
+
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.22);
+
+  transform: translateY(-1px);
+}
+
+/* Ház sorszáma */
+.city-building-position {
+  color: #8fdcff;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  text-align: center;
+}
+
+/* Kis házelőnézet */
+.city-building-preview {
+  width: 72px;
+  height: 94px;
+
+  overflow: hidden;
+
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 6px;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.city-building-preview img {
+  max-width: 100%;
+  max-height: 100%;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+/* Ház adatai */
+.city-building-info {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+.city-building-info strong {
+  overflow: hidden;
+
+  color: #ffffff;
+
+  font-size: 15px;
+
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.city-building-info span {
+  color: #8fdcff;
+
+  font-size: 13px;
+}
+
+.city-building-info small {
+  color: #bdbdbd;
+
+  font-size: 12px;
+}
+
+/* Fel-le mozgató gombok */
+.city-building-controls {
+  display: flex;
+  flex-direction: column;
+
+  gap: 7px;
+}
+
+.city-move-button {
+  width: 34px;
+  height: 34px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.72);
+
+  border: 1px solid rgba(0, 200, 255, 0.52);
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 14px;
+  font-weight: bold;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.city-move-button:hover {
+  color: #000000;
+
+  background: #8fdcff;
+
+  box-shadow: 0 0 9px rgba(0, 200, 255, 0.48);
+
+  transform: scale(1.05);
+}
+
+/* A városlista saját görgetősávja */
+.city-buildings-list::-webkit-scrollbar {
+  width: 10px;
+}
+
+.city-buildings-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+
+  border-radius: 10px;
+}
+
+.city-buildings-list::-webkit-scrollbar-thumb {
+  background: rgba(0, 200, 255, 0.55);
+
+  border-radius: 10px;
+}
+
+.city-buildings-list::-webkit-scrollbar-thumb:hover {
+  background: #00c8ff;
+}
+/* Mentésre váró város */
+.save-needed {
+  animation: savePulse 1.1s infinite alternate;
+
+  border-color: #ffd966;
+
+  box-shadow: 0 0 16px rgba(255, 217, 102, 0.55);
+}
+
+@keyframes savePulse {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.04);
+  }
+}
+/* Házkép nagyítása egér fölé húzáskor */
+.city-building-preview {
+  position: relative;
+
+  overflow: visible;
+}
+
+.city-building-preview img {
+  position: relative;
+
+  z-index: 1;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.city-building-preview img:hover {
+  z-index: 1000;
+
+  transform: translateY(-18px) scale(2.8);
+
+  background: rgba(0, 0, 0, 0.92);
+
+  border: 1px solid rgba(0, 200, 255, 0.8);
+  border-radius: 6px;
+
+  box-shadow:
+    0 0 18px rgba(0, 200, 255, 0.65),
+    0 10px 25px rgba(0, 0, 0, 0.75);
+}
+
+/* Házcsere gomb */
+.city-change-button {
+  grid-column: 1 / -1;
+
+  width: 100%;
+  height: 32px;
+
+  padding: 0;
+
+  color: #ffffff;
+
+  background: rgba(0, 18, 30, 0.92);
+
+  border: 1px solid rgba(0, 200, 255, 0.55);
+  border-radius: 6px;
+
+  cursor: pointer;
+
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 0.4px;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.15s;
+}
+
+.city-change-button:hover {
+  color: #00131d;
+
+  background: #7ee9ff;
+
+  border-color: #a8f4ff;
+
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.45);
+
+  transform: translateY(-1px);
+}
+
+.city-change-button:active {
+  transform: scale(0.96);
+}
+
+/* Házválasztó felugró ablak */
+.building-selector-modal {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 5000;
+
+  padding: 35px;
+
+  background: rgba(0, 0, 0, 0.82);
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+
+.building-selector-modal.active {
+  display: flex;
+}
+
+.building-selector-window {
+  width: min(1150px, 95vw);
+  max-height: 90vh;
+
+  padding: 24px;
+
+  overflow: hidden;
+
+  background: linear-gradient(rgba(5, 18, 28, 0.97), rgba(0, 0, 0, 0.97));
+
+  border: 2px solid rgba(0, 200, 255, 0.58);
+  border-radius: 15px;
+
+  box-shadow:
+    0 0 28px rgba(0, 200, 255, 0.28),
+    0 20px 50px rgba(0, 0, 0, 0.75);
+}
+
+.building-selector-header {
+  margin-bottom: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+}
+
+.building-selector-header h3 {
+  margin-bottom: 7px;
+
+  color: #8fdcff;
+
+  font-size: 26px;
+
+  text-shadow: 0 0 10px rgba(0, 183, 255, 0.75);
+}
+
+.building-selector-header p {
+  color: #cccccc;
+
+  line-height: 1.5;
+}
+
+.building-selector-close {
+  width: 42px;
+  height: 42px;
+
+  color: #ffb5b5;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  border: 1px solid rgba(255, 70, 70, 0.65);
+  border-radius: 8px;
+
+  cursor: pointer;
+
+  font-size: 28px;
+  line-height: 1;
+
+  transition:
+    background 0.2s,
+    color 0.2s,
+    transform 0.2s;
+}
+
+.building-selector-close:hover {
+  color: #ffffff;
+
+  background: #b72121;
+
+  transform: scale(1.06);
+}
+
+.building-selector-grid {
+  max-height: calc(90vh - 140px);
+
+  padding: 8px;
+
+  overflow-y: auto;
+
+  display: grid;
+
+  grid-template-columns: repeat(5, minmax(150px, 1fr));
+
+  gap: 14px;
+}
+
+/* Egy választható ház */
+.building-selector-item {
+  min-height: 210px;
+
+  padding: 12px;
+
+  color: #ffffff;
+
+  background: rgba(0, 0, 0, 0.58);
+
+  border: 1px solid rgba(0, 200, 255, 0.32);
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  gap: 9px;
+
+  transition:
+    background 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s,
+    transform 0.2s;
+}
+
+.building-selector-item:hover {
+  background: rgba(0, 200, 255, 0.1);
+
+  border-color: #00c8ff;
+
+  box-shadow: 0 0 15px rgba(0, 200, 255, 0.32);
+
+  transform: translateY(-3px);
+}
+
+.building-selector-item img {
+  width: 100%;
+  height: 145px;
+
+  object-fit: contain;
+
+  display: block;
+}
+
+.building-selector-item strong {
+  color: #8fdcff;
+
+  font-size: 14px;
+
+  text-align: center;
+}
+
+.building-selector-item span {
+  color: #bdbdbd;
+
+  font-size: 12px;
+}
+
+/* Görgetősáv */
+.building-selector-grid::-webkit-scrollbar {
+  width: 10px;
+}
+
+.building-selector-grid::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.4);
+
+  border-radius: 10px;
+}
+
+.building-selector-grid::-webkit-scrollbar-thumb {
+  background: rgba(0, 200, 255, 0.55);
+
+  border-radius: 10px;
+}
+
+.building-selector-grid::-webkit-scrollbar-thumb:hover {
+  background: #00c8ff;
+}
+
+@media (max-width: 1050px) {
+  .building-selector-grid {
+    grid-template-columns: repeat(3, minmax(150px, 1fr));
+  }
+}
+
+@media (max-width: 650px) {
+  .building-selector-modal {
+    padding: 15px;
+  }
+
+  .building-selector-grid {
+    grid-template-columns: repeat(2, minmax(130px, 1fr));
+  }
+}

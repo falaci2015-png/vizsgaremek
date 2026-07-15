@@ -1,0 +1,145 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  overflow: hidden;
+}
+
+.register-page {
+  width: 100vw;
+  height: 100vh;
+
+  background-image: url("../assets/menu/main_menu_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register-panel {
+  width: 460px;
+
+  padding: 40px;
+
+  background: rgba(0, 0, 0, 0.65);
+
+  border: 2px solid rgba(0, 220, 255, 0.35);
+  border-radius: 18px;
+
+  backdrop-filter: blur(2px);
+
+  text-align: center;
+}
+
+.register-panel h1 {
+  color: #8fdcff;
+
+  font-size: 42px;
+
+  margin-bottom: 15px;
+
+  text-shadow: 0 0 15px #00b7ff;
+}
+
+.register-subtitle {
+  color: #ffffff;
+
+  font-size: 18px;
+
+  margin-bottom: 30px;
+}
+
+#register-form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 18px;
+}
+
+#register-form input {
+  padding: 14px;
+
+  font-size: 17px;
+
+  color: white;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  border: 2px solid #00c8ff;
+  border-radius: 10px;
+
+  outline: none;
+
+  transition: 0.25s;
+}
+
+#register-form input:focus {
+  border-color: #8fdcff;
+
+  box-shadow: 0 0 12px rgba(0, 200, 255, 0.6);
+}
+
+#register-form input::placeholder {
+  color: #bcbcbc;
+}
+
+#register-form button {
+  padding: 15px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  color: white;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  border: 2px solid #00c8ff;
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.25s;
+}
+
+#register-form button:hover {
+  background: #00c8ff;
+
+  color: black;
+}
+
+.register-message {
+  min-height: 24px;
+
+  margin-top: 20px;
+
+  color: #ffd36b;
+
+  font-weight: bold;
+}
+
+.register-links {
+  margin-top: 30px;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.register-links a {
+  color: #8fdcff;
+
+  text-decoration: none;
+
+  transition: 0.25s;
+}
+
+.register-links a:hover {
+  color: white;
+}
+

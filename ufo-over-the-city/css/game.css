@@ -1,0 +1,651 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  overflow: hidden;
+}
+
+/* A teljes játékot középre helyezi */
+#game-wrapper {
+  position: relative;
+
+  width: 100vw;
+  height: 100vh;
+
+  overflow: hidden;
+}
+
+/* A játék belső mérete mindig Full HD marad */
+#world {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 1920px;
+  height: 1080px;
+
+  overflow: hidden;
+
+  transform-origin: top left;
+
+  background-image: url("../assets/backgrounds/01_telihold.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+/* A házak és az út közös, együtt mozgó rétege */
+#moving-city {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  height: 1080px;
+
+  transform-origin: top left;
+}
+
+#city {
+  position: absolute;
+
+  left: 0;
+  bottom: 150px;
+
+  display: flex;
+  align-items: flex-end;
+
+  width: max-content;
+  height: 760px;
+
+  z-index: 5;
+}
+/* ============================
+   Fix út + járda réteg
+============================ */
+
+#road {
+  position: absolute;
+
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 220px;
+
+  background-image: url("../assets/backgrounds/road_01.png");
+  background-repeat: repeat-x;
+  background-position: bottom;
+  background-size: auto 220px;
+
+  z-index: 1;
+}
+
+/* Egy épület teljes doboza */
+.building {
+  position: relative;
+
+  width: 320px;
+  height: 760px;
+
+  flex-shrink: 0;
+  /* **********DEBUG kapcsoló**********
+  outline: 3px solid red;
+  outline-offset: -3px;
+**********DEBUG kapcsoló********** */
+}
+
+/* Csak az épület közvetlen képe */
+.building > img:not(.person) {
+  display: block;
+
+  width: 320px;
+  height: 760px;
+
+  object-fit: contain;
+  image-rendering: auto;
+}
+
+/* Fejlesztői házazonosító felirat */
+.building-label {
+  position: absolute;
+
+  top: 10px;
+  left: 10px;
+
+  z-index: 20;
+
+  padding: 6px 10px;
+
+  color: white;
+  background: rgba(180, 0, 0, 0.85);
+
+  border: 2px solid white;
+  border-radius: 6px;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+
+  pointer-events: none;
+}
+/* Próbaember a háztetőn */
+.person {
+  position: absolute;
+
+  width: 50px;
+  height: auto;
+
+  z-index: 10;
+
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+/* A játék által éppen megjelenített ember */
+.person.is-visible {
+  opacity: 1;
+}
+/* ============================
+   UFO
+============================ */
+
+#ufo {
+  position: absolute;
+
+  left: 45%;
+  top: 250px;
+
+  transform: translateX(-50%);
+
+  width: 200px;
+  height: auto;
+
+  z-index: 100;
+
+  pointer-events: none;
+}
+/* UFO energiasugár */
+#ufo-beam {
+  position: absolute;
+
+  left: 45%;
+  top: 330px;
+
+  width: 150px;
+  height: 535px;
+
+  transform: translateX(-50%);
+
+  /* Halványabb, lágyabb fény */
+  background: linear-gradient(
+    to bottom,
+    rgba(150, 255, 240, 0.36),
+    rgba(80, 255, 200, 0.2),
+    rgba(80, 255, 190, 0.04),
+    rgba(80, 255, 190, 0)
+  );
+
+  /* Keskenyen indul az UFO aljánál, lefelé szélesedik */
+  clip-path: polygon(47% 0, 53% 0, 100% 100%, 0 100%);
+
+  opacity: 0;
+
+  z-index: 90;
+  pointer-events: none;
+
+  filter: drop-shadow(0 0 12px rgba(80, 255, 210, 0.45));
+}
+
+#ufo-beam.is-active {
+  opacity: 1;
+}
+
+/* ============================
+   HUD
+============================ */
+
+#game-hud {
+  position: absolute;
+
+  top: 20px;
+  left: 50%;
+
+  transform: translateX(-50%);
+
+  width: 1760px;
+  min-height: 86px;
+
+  display: grid;
+  grid-template-columns: 360px 1fr 430px;
+  align-items: center;
+  gap: 24px;
+
+  padding: 12px 22px;
+
+  box-sizing: border-box;
+
+  border: 2px solid rgba(120, 255, 255, 0.35);
+  border-radius: 18px;
+
+  background: rgba(0, 10, 28, 0.72);
+  backdrop-filter: blur(8px);
+
+  box-shadow:
+    0 0 20px rgba(70, 235, 255, 0.16),
+    inset 0 0 18px rgba(70, 235, 255, 0.08);
+
+  z-index: 1000;
+}
+
+.hud-panel {
+  min-width: 0;
+
+  display: flex;
+  align-items: center;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.hud-left {
+  justify-content: flex-start;
+  gap: 28px;
+}
+
+.hud-center {
+  justify-content: center;
+
+  overflow: hidden;
+}
+
+.hud-right {
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.hud-line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #dffcff;
+
+  font-size: 21px;
+  font-weight: bold;
+
+  white-space: nowrap;
+}
+
+.hud-line span {
+  color: #c8e9f2;
+}
+
+.hud-line strong {
+  color: #ffffff;
+}
+/* A jobb oldali HUD adatainak fix helye */
+.hud-city-line {
+  width: 170px;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+#city-name {
+  display: block;
+
+  max-width: 170px;
+
+  overflow: hidden;
+
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+  text-align: right;
+}
+
+.hud-difficulty-line {
+  width: 90px;
+  justify-content: center;
+}
+
+#difficulty-value {
+  display: block;
+  white-space: nowrap;
+}
+
+/* Rendőrségi futó hírsáv */
+.police-alert {
+  position: relative;
+
+  width: 430px;
+  height: 32px;
+
+  overflow: hidden;
+
+  border-left: 2px solid rgba(255, 210, 95, 0.45);
+  border-right: 2px solid rgba(255, 210, 95, 0.45);
+
+  color: #ffd25f;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 21px;
+  font-weight: bold;
+
+  white-space: nowrap;
+
+  text-shadow: 0 0 10px rgba(255, 190, 60, 0.45);
+}
+
+#police-alert-text {
+  position: absolute;
+
+  top: 50%;
+  left: 100%;
+
+  transform: translateY(-50%);
+
+  display: inline-block;
+
+  padding-left: 30px;
+
+  animation: policeTicker 14s linear;
+}
+
+/* A szöveg jobbról balra fut */
+@keyframes policeTicker {
+  from {
+    transform: translateY(-50%) translateX(0);
+  }
+
+  to {
+    transform: translateY(-50%) translateX(calc(-100% - 460px));
+  }
+}
+
+.hud-menu-button {
+  display: inline-flex;
+
+  justify-content: center;
+  align-items: center;
+
+  width: 120px;
+  height: 48px;
+
+  flex-shrink: 0;
+
+  border: 2px solid rgba(120, 255, 255, 0.5);
+  border-radius: 10px;
+
+  background: rgba(0, 20, 35, 0.8);
+
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.hud-menu-button:hover {
+  background: rgba(80, 255, 255, 0.2);
+
+  box-shadow: 0 0 14px rgba(80, 255, 255, 0.35);
+
+  transform: scale(1.05);
+}
+/* ============================
+   Ember elrablási folyamatjelző
+============================ */
+
+.capture-progress {
+  position: absolute;
+
+  width: 100px;
+  height: 18px;
+
+  transform: translateX(-50%);
+
+  overflow: hidden;
+
+  border: 2px solid rgba(190, 255, 245, 0.9);
+  border-radius: 8px;
+
+  background: rgba(0, 18, 30, 0.88);
+
+  box-shadow:
+    0 0 10px rgba(80, 255, 210, 0.8),
+    inset 0 0 6px rgba(80, 255, 210, 0.25);
+
+  z-index: 30;
+
+  pointer-events: none;
+}
+
+.capture-progress-fill {
+  position: absolute;
+
+  top: 0;
+  left: 0;
+
+  width: 0%;
+  height: 100%;
+
+  background: linear-gradient(
+    to right,
+    rgba(60, 230, 180, 0.9),
+    rgba(180, 255, 225, 1)
+  );
+
+  transition: width 0.05s linear;
+}
+
+.capture-progress-text {
+  position: absolute;
+
+  inset: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+
+  text-shadow: 0 1px 3px black;
+}
+/* Pontszám felvillanása sikeres elrabláskor */
+#score-value.score-pop {
+  animation: scorePop 0.45s ease-out;
+}
+
+@keyframes scorePop {
+  0% {
+    color: #ffffff;
+    transform: scale(1);
+  }
+
+  45% {
+    color: #79ffe1;
+    transform: scale(1.45);
+    text-shadow: 0 0 18px rgba(80, 255, 215, 1);
+  }
+
+  100% {
+    color: #ffffff;
+    transform: scale(1);
+  }
+}
+/* Utolsó 15 másodperc */
+#time-value.time-warning {
+  color: #ffd25f;
+  text-shadow: 0 0 10px rgba(255, 210, 95, 0.8);
+}
+
+/* Utolsó 5 másodperc */
+#time-value.time-danger {
+  color: #ff6868;
+
+  animation: timeDanger 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes timeDanger {
+  from {
+    transform: scale(1);
+    text-shadow: 0 0 5px rgba(255, 70, 70, 0.5);
+  }
+
+  to {
+    transform: scale(1.2);
+    text-shadow: 0 0 18px rgba(255, 70, 70, 1);
+  }
+}
+/* A HUD számain működjön a nagyítási animáció */
+#score-value,
+#time-value {
+  display: inline-block;
+}
+/* ============================
+   Játék vége panel
+============================ */
+
+.game-over-overlay {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+  justify-content: center;
+  align-items: center;
+
+  background: rgba(0, 0, 0, 0.78);
+  backdrop-filter: blur(5px);
+
+  z-index: 5000;
+}
+
+.game-over-overlay.is-visible {
+  display: flex;
+}
+
+.game-over-panel {
+  width: 620px;
+
+  padding: 42px;
+
+  text-align: center;
+
+  background: rgba(0, 12, 28, 0.96);
+
+  border: 3px solid rgba(100, 255, 240, 0.75);
+  border-radius: 22px;
+
+  box-shadow:
+    0 0 30px rgba(80, 255, 225, 0.35),
+    inset 0 0 24px rgba(80, 255, 225, 0.08);
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.game-over-panel h1 {
+  margin: 0 0 24px;
+
+  color: #8ffff0;
+
+  font-size: 52px;
+  letter-spacing: 3px;
+
+  text-shadow: 0 0 18px rgba(80, 255, 225, 0.75);
+}
+
+.game-over-result {
+  margin: 0 0 18px;
+
+  color: #ffffff;
+
+  font-size: 28px;
+  font-weight: bold;
+}
+
+#final-score {
+  color: #ffd25f;
+
+  font-size: 38px;
+
+  text-shadow: 0 0 14px rgba(255, 210, 95, 0.75);
+}
+
+.score-save-message {
+  min-height: 24px;
+
+  margin: 0 0 22px;
+
+  color: #bfffe9;
+
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.game-over-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  gap: 16px;
+}
+
+.game-over-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  min-height: 52px;
+
+  padding: 12px 18px;
+
+  color: #ffffff;
+  background: rgba(0, 25, 40, 0.92);
+
+  border: 2px solid rgba(100, 255, 240, 0.55);
+  border-radius: 10px;
+
+  font-size: 18px;
+  font-weight: bold;
+
+  text-decoration: none;
+
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.game-over-button:hover {
+  color: #001412;
+  background: #7fffe8;
+
+  transform: translateY(-2px);
+
+  box-shadow: 0 0 16px rgba(80, 255, 225, 0.55);
+}
+
+.game-over-exit-button {
+  grid-column: 1 / -1;
+
+  border-color: rgba(255, 170, 100, 0.7);
+}
+
+.game-over-exit-button:hover {
+  background: #ffad69;
+}
