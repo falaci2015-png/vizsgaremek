@@ -232,22 +232,6 @@ $username = htmlspecialchars(
             </section>
 
             <section
-                id="scores-section"
-                class="admin-section">
-
-                <div class="section-placeholder">
-
-                    <h3>Ranglista kezelése</h3>
-
-                    <p>
-                        Ide kerülnek majd a mentett eredmények.
-                    </p>
-
-                </div>
-
-            </section>
-
-            <section
                 id="cities-section"
                 class="admin-section">
 

@@ -171,8 +171,9 @@ $username = htmlspecialchars(
                         </label>
 
                         <p>
-                            A nehézség később az emberek megjelenését,
-                            a mozgást és a pontozást befolyásolja.
+                            A nehézségi szint meghatározza,
+                            hogy a tetőn megjelenő emberek
+                            mennyi ideig maradnak láthatók.
                         </p>
 
                     </div>

@@ -67,6 +67,12 @@ menuButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const sectionName = button.dataset.section;
 
+    // A Ranglista menüpont a működő ranglista oldalra visz.
+    if (sectionName === "scores") {
+      window.location.href = "leaderboard.php";
+      return;
+    }
+
     openAdminSection(sectionName);
   });
 });

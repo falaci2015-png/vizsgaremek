@@ -30,7 +30,11 @@ async function loadSettingLists() {
       const option = document.createElement("option");
 
       option.value = city.id;
-      option.textContent = city.name;
+      option.textContent =
+        city.name.length > 21 ? city.name.substring(0, 21) + "..." : city.name;
+
+      // A teljes név maradjon tooltipként
+      option.title = city.name;
 
       // A város alapértelmezett hátterének azonosítója
       option.dataset.backgroundId = city.background_id;

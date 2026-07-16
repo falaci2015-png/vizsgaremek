@@ -23,6 +23,8 @@ if (!isset($_SESSION["user_id"])) {
 
     <div id="game-wrapper">
         <div id="world">
+            <!-- Finom, ritkán felragyogó háttércsillagok -->
+            <div id="sky-effects" aria-hidden="true"></div>
             <!-- Felső HUD -->
             <div id="game-hud">
 
@@ -58,16 +60,12 @@ if (!isset($_SESSION["user_id"])) {
                 <section class="hud-panel hud-right">
 
                     <div class="hud-line hud-city-line">
+                        <span>Város:</span>
+
                         <strong
                             id="city-name"
                             title="Metropolis">
                             Metropolis
-                        </strong>
-                    </div>
-
-                    <div class="hud-line hud-difficulty-line">
-                        <strong id="difficulty-value">
-                            Normál
                         </strong>
                     </div>
 

@@ -39,28 +39,25 @@ DROP TABLE IF EXISTS users;
 CREATE TABLE users (
     id INT UNSIGNED NOT NULL AUTO_INCREMENT,
     username VARCHAR(50) NOT NULL,
-    password_hash VARCHAR(255) NOT NULL,
-    email VARCHAR(100) DEFAULT NULL,
+    password_hash VARCHAR(255) NOT NULL,    
     role ENUM('user', 'admin') NOT NULL DEFAULT 'user',
     is_online TINYINT(1) NOT NULL DEFAULT 0,
     last_active DATETIME DEFAULT NULL,
     created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     PRIMARY KEY (id),
-    UNIQUE KEY uq_users_username (username),
-    UNIQUE KEY uq_users_email (email)
+    UNIQUE KEY uq_users_username (username)    
 ) ENGINE=InnoDB
   DEFAULT CHARSET=utf8mb4
   COLLATE=utf8mb4_hungarian_ci;
 
 -- A hash az "1234" jelszóhoz tartozik.
 INSERT INTO users (
-    id, username, password_hash, email, role, is_online, last_active
+    id, username, password_hash, role, is_online, last_active
 ) VALUES (
     1,
     'admin',
-    '$2y$12$mvgpPAWGY0hNTEFJ4wano.bYURwNeDamipcbucqt8G3K6JMiSwFXi',
-    'admin@ufo.local',
+    '$2y$12$mvgpPAWGY0hNTEFJ4wano.bYURwNeDamipcbucqt8G3K6JMiSwFXi',   
     'admin',
     0,
     NULL
@@ -300,7 +297,7 @@ CREATE TABLE leaderboard (
 
 -- ============================================================
 -- 8. A VÉDETT FŐ ADMIN
--- A név, jelszó, e-mail és szerepkör nem módosítható.
+-- A név, jelszó és szerepkör nem módosítható.
 -- Az is_online és last_active mezők változhatnak, mert a PHP
 -- ezeket belépéskor, aktivitáskor és kilépéskor frissíti.
 -- ============================================================
@@ -316,8 +313,7 @@ BEGIN
         AND (
             NEW.username <> OLD.username
             OR NEW.password_hash <> OLD.password_hash
-            OR NEW.role <> OLD.role
-            OR NOT (NEW.email <=> OLD.email)
+            OR NEW.role <> OLD.role            
         )
     THEN
         SIGNAL SQLSTATE '45000'

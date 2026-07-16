@@ -47,6 +47,7 @@ let timerInterval = null;
 let gameEnded = false;
 let peopleSpawnTimeout = null;
 let gameSettingsLoaded = false;
+let skyStarTimeout = null;
 // *************************************
 // A játék aktuális beállításai
 // (adatbázisból töltjük be induláskor)
@@ -68,9 +69,88 @@ let gameSettings = {
   effects_enabled: true,
 };
 // *************************************
+// Az emberek tetőn maradási ideje
+// a kiválasztott nehézségi szint alapján.
+// Az értékek ezredmásodpercben vannak.
+// *************************************
+function getPeopleVisibleTime() {
+  switch (gameSettings.difficulty) {
+    case "easy":
+      return 10000; // Könnyű: 10 másodperc
+
+    case "normal":
+      return 8000; // Normál: 8 másodperc
+
+    case "hard":
+      return 6000; // Nehéz: 6 másodperc
+
+    case "brutal":
+      return 4000; // Brutális: 4 másodperc
+
+    default:
+      return 8000; // Biztonsági alapérték: Normál
+  }
+}
+// *************************************
 // Játékbeállítások betöltése adatbázisból
 // *************************************
+// *************************************
+// Finom háttércsillag-effekt
+// *************************************
 
+function createSkyStar() {
+  if (gameEnded) {
+    return;
+  }
+
+  const skyEffects = document.getElementById("sky-effects");
+
+  if (!skyEffects) {
+    return;
+  }
+
+  // Egyszerre legfeljebb két csillag lehet a háttérben
+  if (skyEffects.children.length >= 2) {
+    scheduleNextSkyStar();
+    return;
+  }
+
+  const star = document.createElement("span");
+
+  star.className = "sky-star";
+
+  // A csillag kizárólag a HUD és a háztetők közötti
+  // biztonságos égboltsávban jelenhet meg.
+  star.style.left = `${Math.floor(Math.random() * 1680) + 120}px`;
+  star.style.top = `${Math.floor(Math.random() * 31) + 10}px`;
+
+  // Finom méretkülönbség
+  const starSize = Math.floor(Math.random() * 3) + 3;
+
+  star.style.width = `${starSize}px`;
+  star.style.height = `${starSize}px`;
+
+  skyEffects.appendChild(star);
+
+  // Az animáció végén eltávolítjuk a DOM-ból
+  star.addEventListener("animationend", () => {
+    star.remove();
+  });
+
+  scheduleNextSkyStar();
+}
+
+function scheduleNextSkyStar() {
+  if (gameEnded) {
+    return;
+  }
+
+  // 5–11 másodpercenként jelenik meg egy új csillag
+  //const delay = Math.floor(Math.random() * 6001) + 5000;
+  const delay = 500;
+
+  skyStarTimeout = setTimeout(createSkyStar, delay);
+}
 async function loadGameSettings() {
   try {
     const response = await fetch("../backend/get_game_settings.php");
@@ -336,8 +416,10 @@ fetch("../backend/get_city.php")
         });
       }, 700);
 
-      // 5–10 másodperc múlva új embercsoport következik
-      const nextChange = Math.floor(Math.random() * 5001) + 5000;
+      // Az emberek 700 ms várakozás után jelennek meg.
+      // Ezért a 700 ms-ot hozzáadjuk, hogy a ténylegesen látható idő
+      // pontosan 10, 8, 6 vagy 4 másodperc legyen.
+      const nextChange = 700 + getPeopleVisibleTime();
 
       peopleSpawnTimeout = setTimeout(showRandomPeople, nextChange);
     }
@@ -495,6 +577,10 @@ function startGameTimer() {
       // Új emberek megjelenésének leállítása
       if (peopleSpawnTimeout) {
         clearTimeout(peopleSpawnTimeout);
+      }
+      // Új háttércsillagok létrehozásának leállítása
+      if (skyStarTimeout) {
+        clearTimeout(skyStarTimeout);
       }
       // Az emberanimációk teljes leállítása
       personAnimationIntervals.forEach((intervalId) => {
@@ -848,3 +934,4 @@ function moveCityForDebug() {
 // a felhasználó adatbázisban tárolt beállításait.
 loadGameSettings();
 moveCityForDebug();
+scheduleNextSkyStar();
