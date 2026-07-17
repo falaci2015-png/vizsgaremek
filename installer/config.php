@@ -46,7 +46,7 @@ if ($isLocalhost) {
 } else {
     $dbHost = "sql208.infinityfree.com";
     $dbUser = "if0_41754972";
-    $dbPassword = "infinity password";
+    $dbPassword = "password";
 
     $games = [
         "lena" => [

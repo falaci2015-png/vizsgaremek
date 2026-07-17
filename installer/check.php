@@ -74,7 +74,32 @@ if ($isLocalhost) {
 | hány regisztrált felhasználó van.
 |--------------------------------------------------------------------------
 */
+/*
+|--------------------------------------------------------------------------
+| Adatbázis-kapcsolat ellenőrzése
+|--------------------------------------------------------------------------
+| Csak akkor jelenítünk meg Aktív állapotot,
+| ha az adott adatbázishoz valóban sikerült kapcsolódni.
+|--------------------------------------------------------------------------
+*/
+function isDatabaseActive($databaseName)
+{
+    try {
+        new PDO(
+            "mysql:host=" . $GLOBALS["dbHost"] .
+                ";dbname=$databaseName;charset=utf8mb4",
+            $GLOBALS["dbUser"],
+            $GLOBALS["dbPassword"],
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+            ]
+        );
 
+        return true;
+    } catch (PDOException $e) {
+        return false;
+    }
+}
 function getUserCount($databaseName)
 {
     try {
@@ -134,9 +159,17 @@ function getActiveUserCount($databaseName)
 $gameStatuses = [];
 
 foreach ($games as $key => $game) {
+    $databaseActive = isDatabaseActive($game["database"]);
+
     $gameStatuses[$key] = [
-        "database" => "Aktív",
-        "users" => getUserCount($game["database"]),
-        "activeUsers" => getActiveUserCount($game["database"])
+        "database" => $databaseActive ? "Aktív" : "Hiba",
+
+        "users" => $databaseActive
+            ? getUserCount($game["database"])
+            : 0,
+
+        "activeUsers" => $databaseActive
+            ? getActiveUserCount($game["database"])
+            : 0
     ];
 }
